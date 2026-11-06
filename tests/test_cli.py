@@ -108,3 +108,11 @@ def test_selftest_passes(tmp_path: Path, capsys: pytest.CaptureFixture[str]) -> 
     out = capsys.readouterr().out
     assert "selftest: OK" in out and "FAIL" not in out
     assert (tmp_path / "selftest-report.html").is_file()
+
+
+def test_init_with_empty_env_names_the_keys(
+    workdir: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    (workdir / ".env").write_text("ALPHA_APP_ID=\nALPHA_APP_SECRET=\n")
+    assert cli.main(["init"]) == cli.EXIT_OK
+    assert "put ALPHA_APP_ID and ALPHA_APP_SECRET into .env" in capsys.readouterr().out

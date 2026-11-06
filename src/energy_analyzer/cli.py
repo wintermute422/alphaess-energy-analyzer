@@ -130,10 +130,16 @@ def cmd_init(args: argparse.Namespace, settings: Settings, transport: Transport 
     if args.no_check:
         return EXIT_OK
     if not (settings.app_id and settings.app_secret):
-        _say(
-            f"next: copy {_show(target / '.env.example')} to {_show(target / '.env')}, fill in "
-            "your credentials and run `energy-analyzer init` again to check them."
-        )
+        if settings.env_path is not None and settings.env_path.is_file():
+            _say(
+                f"next: put ALPHA_APP_ID and ALPHA_APP_SECRET into {_show(settings.env_path)} "
+                "and run `energy-analyzer init` again to check them."
+            )
+        else:
+            _say(
+                f"next: copy {_show(target / '.env.example')} to {_show(target / '.env')}, "
+                "fill in your credentials and run `energy-analyzer init` again to check them."
+            )
         return EXIT_OK
     client = _client(settings, transport)
     systems = client.get_ess_list()
