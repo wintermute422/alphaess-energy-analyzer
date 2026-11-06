@@ -1,0 +1,20 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          { "type": "command", "command": "python \"$CLAUDE_PROJECT_DIR/scripts/claude_hook.py\" post-edit || python3 \"$CLAUDE_PROJECT_DIR/scripts/claude_hook.py\" post-edit" }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          { "type": "command", "command": "python \"$CLAUDE_PROJECT_DIR/scripts/claude_hook.py\" pre-bash || python3 \"$CLAUDE_PROJECT_DIR/scripts/claude_hook.py\" pre-bash" }
+        ]
+      }
+    ]
+  }
+}

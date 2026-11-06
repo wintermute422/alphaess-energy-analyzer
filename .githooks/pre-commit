@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Blocks secrets, local config, databases and ignored files from being committed.
+# Enable with: git config core.hooksPath .githooks
+set -euo pipefail
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+
+fail() { echo "pre-commit: BLOCKED - $*" >&2; exit 1; }
+
+staged="$(git diff --cached --name-only --diff-filter=ACMR)"
+[ -n "$staged" ] || exit 0
+
+# 1. Forbidden file names (examples are allowed).
+bad="$(printf '%s\n' "$staged" | grep -E '(^|/)(\.env(\..*)?|deploy\.env|config\.toml)$|\.(db|sqlite3?|db-wal|db-shm|pem|key)$|(^|/)id_(rsa|ed25519)' \
+  | grep -v -E '(^|/)(\.env\.example|deploy\.env\.example)$' || true)"
+[ -z "$bad" ] || fail "forbidden files staged:
+$bad"
+
+# 2. Files that .gitignore says must not be tracked (catches `git add -f`).
+ignored="$(printf '%s\n' "$staged" | git check-ignore --no-index --stdin || true)"
+[ -z "$ignored" ] || fail "git-ignored files staged (was git add -f used?):
+$ignored"
+
+# 3. Exact secret values + generic author-data patterns in the staged diff.
+bash scripts/secret_scan.sh --staged || fail "secret_scan found matches (see above)"
+
+# 4. gitleaks on the staged changes.
+bash scripts/gitleaks.sh staged >/dev/null 2>"${TMPDIR:-/tmp}/gitleaks-precommit.log" \
+  || { cat "${TMPDIR:-/tmp}/gitleaks-precommit.log" >&2; fail "gitleaks found leaks or could not run"; }
+
+echo "pre-commit: OK"

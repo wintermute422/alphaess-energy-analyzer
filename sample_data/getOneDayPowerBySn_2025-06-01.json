@@ -1,0 +1,2887 @@
+{
+ "code": 200,
+ "msg": "Success",
+ "expMsg": null,
+ "data": [
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 00:00:00",
+   "ppv": 0,
+   "load": 155,
+   "cbat": 49.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 00:05:00",
+   "ppv": 0,
+   "load": 156,
+   "cbat": 49.7,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 00:10:00",
+   "ppv": 0,
+   "load": 167,
+   "cbat": 49.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 00:15:00",
+   "ppv": 0,
+   "load": 161,
+   "cbat": 49.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 00:20:00",
+   "ppv": 0,
+   "load": 169,
+   "cbat": 49.3,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 00:25:00",
+   "ppv": 0,
+   "load": 161,
+   "cbat": 49.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 00:30:00",
+   "ppv": 0,
+   "load": 158,
+   "cbat": 49.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 00:35:00",
+   "ppv": 0,
+   "load": 159,
+   "cbat": 48.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 00:40:00",
+   "ppv": 0,
+   "load": 155,
+   "cbat": 48.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 00:45:00",
+   "ppv": 0,
+   "load": 156,
+   "cbat": 48.7,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 00:50:00",
+   "ppv": 0,
+   "load": 154,
+   "cbat": 48.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 00:55:00",
+   "ppv": 0,
+   "load": 158,
+   "cbat": 48.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 01:00:00",
+   "ppv": 0,
+   "load": 165,
+   "cbat": 48.3,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 01:05:00",
+   "ppv": 0,
+   "load": 159,
+   "cbat": 48.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 01:10:00",
+   "ppv": 0,
+   "load": 156,
+   "cbat": 48.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 01:15:00",
+   "ppv": 0,
+   "load": 166,
+   "cbat": 47.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 01:20:00",
+   "ppv": 0,
+   "load": 162,
+   "cbat": 47.7,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 01:25:00",
+   "ppv": 0,
+   "load": 168,
+   "cbat": 47.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 01:30:00",
+   "ppv": 0,
+   "load": 155,
+   "cbat": 47.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 01:35:00",
+   "ppv": 0,
+   "load": 156,
+   "cbat": 47.3,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 01:40:00",
+   "ppv": 0,
+   "load": 161,
+   "cbat": 47.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 01:45:00",
+   "ppv": 0,
+   "load": 165,
+   "cbat": 47.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 01:50:00",
+   "ppv": 0,
+   "load": 171,
+   "cbat": 46.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 01:55:00",
+   "ppv": 0,
+   "load": 156,
+   "cbat": 46.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 02:00:00",
+   "ppv": 0,
+   "load": 157,
+   "cbat": 46.7,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 02:05:00",
+   "ppv": 0,
+   "load": 167,
+   "cbat": 46.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 02:10:00",
+   "ppv": 0,
+   "load": 163,
+   "cbat": 46.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 02:15:00",
+   "ppv": 0,
+   "load": 165,
+   "cbat": 46.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 02:20:00",
+   "ppv": 0,
+   "load": 163,
+   "cbat": 46.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 02:25:00",
+   "ppv": 0,
+   "load": 155,
+   "cbat": 46.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 02:30:00",
+   "ppv": 0,
+   "load": 164,
+   "cbat": 45.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 02:35:00",
+   "ppv": 0,
+   "load": 162,
+   "cbat": 45.7,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 02:40:00",
+   "ppv": 0,
+   "load": 155,
+   "cbat": 45.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 02:45:00",
+   "ppv": 0,
+   "load": 168,
+   "cbat": 45.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 02:50:00",
+   "ppv": 0,
+   "load": 159,
+   "cbat": 45.3,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 02:55:00",
+   "ppv": 0,
+   "load": 166,
+   "cbat": 45.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 03:00:00",
+   "ppv": 0,
+   "load": 165,
+   "cbat": 45.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 03:05:00",
+   "ppv": 0,
+   "load": 165,
+   "cbat": 44.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 03:10:00",
+   "ppv": 0,
+   "load": 160,
+   "cbat": 44.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 03:15:00",
+   "ppv": 0,
+   "load": 159,
+   "cbat": 44.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 03:20:00",
+   "ppv": 0,
+   "load": 156,
+   "cbat": 44.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 03:25:00",
+   "ppv": 0,
+   "load": 155,
+   "cbat": 44.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 03:30:00",
+   "ppv": 0,
+   "load": 157,
+   "cbat": 44.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 03:35:00",
+   "ppv": 0,
+   "load": 154,
+   "cbat": 44.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 03:40:00",
+   "ppv": 0,
+   "load": 158,
+   "cbat": 44.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 03:45:00",
+   "ppv": 0,
+   "load": 156,
+   "cbat": 43.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 03:50:00",
+   "ppv": 0,
+   "load": 165,
+   "cbat": 43.7,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 03:55:00",
+   "ppv": 0,
+   "load": 159,
+   "cbat": 43.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 04:00:00",
+   "ppv": 0,
+   "load": 160,
+   "cbat": 43.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 04:05:00",
+   "ppv": 0,
+   "load": 156,
+   "cbat": 43.3,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 04:10:00",
+   "ppv": 0,
+   "load": 160,
+   "cbat": 43.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 04:15:00",
+   "ppv": 0,
+   "load": 165,
+   "cbat": 43.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 04:20:00",
+   "ppv": 0,
+   "load": 158,
+   "cbat": 42.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 04:25:00",
+   "ppv": 0,
+   "load": 158,
+   "cbat": 42.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 04:30:00",
+   "ppv": 0,
+   "load": 157,
+   "cbat": 42.7,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 04:35:00",
+   "ppv": 0,
+   "load": 155,
+   "cbat": 42.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 04:40:00",
+   "ppv": 0,
+   "load": 159,
+   "cbat": 42.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 04:45:00",
+   "ppv": 0,
+   "load": 172,
+   "cbat": 42.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 04:50:00",
+   "ppv": 0,
+   "load": 171,
+   "cbat": 42.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 04:55:00",
+   "ppv": 0,
+   "load": 160,
+   "cbat": 42.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 05:00:00",
+   "ppv": 0,
+   "load": 162,
+   "cbat": 41.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 05:05:00",
+   "ppv": 0,
+   "load": 160,
+   "cbat": 41.7,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 05:10:00",
+   "ppv": 0,
+   "load": 168,
+   "cbat": 41.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 05:15:00",
+   "ppv": 0,
+   "load": 155,
+   "cbat": 41.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 05:20:00",
+   "ppv": 0,
+   "load": 160,
+   "cbat": 41.3,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 05:25:00",
+   "ppv": 0,
+   "load": 161,
+   "cbat": 41.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 05:30:00",
+   "ppv": 0,
+   "load": 155,
+   "cbat": 41.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 05:35:00",
+   "ppv": 0,
+   "load": 155,
+   "cbat": 40.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 05:40:00",
+   "ppv": 0,
+   "load": 159,
+   "cbat": 40.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 05:45:00",
+   "ppv": 0,
+   "load": 169,
+   "cbat": 40.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 05:50:00",
+   "ppv": 0,
+   "load": 160,
+   "cbat": 40.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 05:55:00",
+   "ppv": 0,
+   "load": 159,
+   "cbat": 40.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 06:00:00",
+   "ppv": 0,
+   "load": 165,
+   "cbat": 40.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 06:05:00",
+   "ppv": 12,
+   "load": 162,
+   "cbat": 40.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 06:10:00",
+   "ppv": 42,
+   "load": 154,
+   "cbat": 40.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 06:15:00",
+   "ppv": 60,
+   "load": 169,
+   "cbat": 39.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 06:20:00",
+   "ppv": 140,
+   "load": 159,
+   "cbat": 39.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 06:25:00",
+   "ppv": 148,
+   "load": 156,
+   "cbat": 39.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 06:30:00",
+   "ppv": 165,
+   "load": 764,
+   "cbat": 39.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 06:35:00",
+   "ppv": 251,
+   "load": 761,
+   "cbat": 39.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 06:40:00",
+   "ppv": 279,
+   "load": 775,
+   "cbat": 38.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 06:45:00",
+   "ppv": 355,
+   "load": 767,
+   "cbat": 38.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 06:50:00",
+   "ppv": 402,
+   "load": 760,
+   "cbat": 37.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 06:55:00",
+   "ppv": 507,
+   "load": 760,
+   "cbat": 37.7,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 07:00:00",
+   "ppv": 503,
+   "load": 770,
+   "cbat": 37.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 07:05:00",
+   "ppv": 603,
+   "load": 759,
+   "cbat": 37.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 07:10:00",
+   "ppv": 629,
+   "load": 759,
+   "cbat": 37.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 07:15:00",
+   "ppv": 715,
+   "load": 758,
+   "cbat": 37.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 07:20:00",
+   "ppv": 781,
+   "load": 767,
+   "cbat": 37.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 07:25:00",
+   "ppv": 893,
+   "load": 2761,
+   "cbat": 35.7,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 07:30:00",
+   "ppv": 878,
+   "load": 769,
+   "cbat": 35.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 07:35:00",
+   "ppv": 1085,
+   "load": 755,
+   "cbat": 36.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 07:40:00",
+   "ppv": 1112,
+   "load": 757,
+   "cbat": 36.3,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 07:45:00",
+   "ppv": 1302,
+   "load": 766,
+   "cbat": 36.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 07:50:00",
+   "ppv": 1406,
+   "load": 760,
+   "cbat": 37.3,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 07:55:00",
+   "ppv": 1673,
+   "load": 755,
+   "cbat": 38.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 08:00:00",
+   "ppv": 1650,
+   "load": 756,
+   "cbat": 38.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 08:05:00",
+   "ppv": 1682,
+   "load": 756,
+   "cbat": 39.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 08:10:00",
+   "ppv": 1481,
+   "load": 759,
+   "cbat": 40.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 08:15:00",
+   "ppv": 1810,
+   "load": 758,
+   "cbat": 41.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 08:20:00",
+   "ppv": 1733,
+   "load": 759,
+   "cbat": 41.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 08:25:00",
+   "ppv": 2018,
+   "load": 764,
+   "cbat": 42.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 08:30:00",
+   "ppv": 1748,
+   "load": 167,
+   "cbat": 44.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 08:35:00",
+   "ppv": 2401,
+   "load": 155,
+   "cbat": 46.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 08:40:00",
+   "ppv": 2561,
+   "load": 167,
+   "cbat": 48.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 08:45:00",
+   "ppv": 2322,
+   "load": 168,
+   "cbat": 49.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 08:50:00",
+   "ppv": 2444,
+   "load": 155,
+   "cbat": 51.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 08:55:00",
+   "ppv": 2562,
+   "load": 162,
+   "cbat": 53.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 09:00:00",
+   "ppv": 1829,
+   "load": 165,
+   "cbat": 55.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 09:05:00",
+   "ppv": 2750,
+   "load": 160,
+   "cbat": 57.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 09:10:00",
+   "ppv": 2879,
+   "load": 154,
+   "cbat": 59.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 09:15:00",
+   "ppv": 2893,
+   "load": 160,
+   "cbat": 61.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 09:20:00",
+   "ppv": 2713,
+   "load": 162,
+   "cbat": 64.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 09:25:00",
+   "ppv": 2921,
+   "load": 156,
+   "cbat": 66.3,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 09:30:00",
+   "ppv": 2304,
+   "load": 165,
+   "cbat": 68.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 09:35:00",
+   "ppv": 2959,
+   "load": 157,
+   "cbat": 70.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 09:40:00",
+   "ppv": 3546,
+   "load": 156,
+   "cbat": 73.3,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 09:45:00",
+   "ppv": 3995,
+   "load": 171,
+   "cbat": 76.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 09:50:00",
+   "ppv": 2984,
+   "load": 156,
+   "cbat": 78.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 09:55:00",
+   "ppv": 3132,
+   "load": 179,
+   "cbat": 81.3,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 10:00:00",
+   "ppv": 3318,
+   "load": 155,
+   "cbat": 83.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 10:05:00",
+   "ppv": 3512,
+   "load": 164,
+   "cbat": 86.7,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 10:10:00",
+   "ppv": 3553,
+   "load": 154,
+   "cbat": 89.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 10:15:00",
+   "ppv": 3750,
+   "load": 170,
+   "cbat": 92.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 10:20:00",
+   "ppv": 3797,
+   "load": 157,
+   "cbat": 95.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 10:25:00",
+   "ppv": 3558,
+   "load": 164,
+   "cbat": 98.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 10:30:00",
+   "ppv": 4594,
+   "load": 166,
+   "cbat": 100.0,
+   "feedIn": 2499,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 10:35:00",
+   "ppv": 3714,
+   "load": 163,
+   "cbat": 100.0,
+   "feedIn": 3551,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 10:40:00",
+   "ppv": 3850,
+   "load": 162,
+   "cbat": 100.0,
+   "feedIn": 3688,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 10:45:00",
+   "ppv": 4866,
+   "load": 158,
+   "cbat": 100.0,
+   "feedIn": 4708,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 10:50:00",
+   "ppv": 4662,
+   "load": 163,
+   "cbat": 100.0,
+   "feedIn": 4499,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 10:55:00",
+   "ppv": 5015,
+   "load": 159,
+   "cbat": 100.0,
+   "feedIn": 4856,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 11:00:00",
+   "ppv": 4806,
+   "load": 582,
+   "cbat": 100.0,
+   "feedIn": 4224,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 11:05:00",
+   "ppv": 4574,
+   "load": 559,
+   "cbat": 100.0,
+   "feedIn": 4015,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 11:10:00",
+   "ppv": 4081,
+   "load": 569,
+   "cbat": 100.0,
+   "feedIn": 3512,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 11:15:00",
+   "ppv": 4746,
+   "load": 557,
+   "cbat": 100.0,
+   "feedIn": 4189,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 11:20:00",
+   "ppv": 3943,
+   "load": 557,
+   "cbat": 100.0,
+   "feedIn": 3386,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 11:25:00",
+   "ppv": 4588,
+   "load": 555,
+   "cbat": 100.0,
+   "feedIn": 4033,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 11:30:00",
+   "ppv": 5391,
+   "load": 558,
+   "cbat": 100.0,
+   "feedIn": 4833,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 11:35:00",
+   "ppv": 4918,
+   "load": 557,
+   "cbat": 100.0,
+   "feedIn": 4361,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 11:40:00",
+   "ppv": 4640,
+   "load": 560,
+   "cbat": 100.0,
+   "feedIn": 4080,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 11:45:00",
+   "ppv": 4473,
+   "load": 555,
+   "cbat": 100.0,
+   "feedIn": 3918,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 11:50:00",
+   "ppv": 5450,
+   "load": 555,
+   "cbat": 100.0,
+   "feedIn": 4895,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 11:55:00",
+   "ppv": 4697,
+   "load": 556,
+   "cbat": 100.0,
+   "feedIn": 4141,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 12:00:00",
+   "ppv": 4963,
+   "load": 554,
+   "cbat": 100.0,
+   "feedIn": 4409,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 12:05:00",
+   "ppv": 4636,
+   "load": 558,
+   "cbat": 100.0,
+   "feedIn": 4078,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 12:10:00",
+   "ppv": 4798,
+   "load": 2562,
+   "cbat": 100.0,
+   "feedIn": 2236,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 12:15:00",
+   "ppv": 5507,
+   "load": 569,
+   "cbat": 100.0,
+   "feedIn": 4938,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 12:20:00",
+   "ppv": 4737,
+   "load": 569,
+   "cbat": 100.0,
+   "feedIn": 4168,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 12:25:00",
+   "ppv": 5271,
+   "load": 556,
+   "cbat": 100.0,
+   "feedIn": 4715,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 12:30:00",
+   "ppv": 4489,
+   "load": 565,
+   "cbat": 100.0,
+   "feedIn": 3924,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 12:35:00",
+   "ppv": 4856,
+   "load": 558,
+   "cbat": 100.0,
+   "feedIn": 4298,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 12:40:00",
+   "ppv": 5659,
+   "load": 565,
+   "cbat": 100.0,
+   "feedIn": 5094,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 12:45:00",
+   "ppv": 5520,
+   "load": 563,
+   "cbat": 100.0,
+   "feedIn": 4957,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 12:50:00",
+   "ppv": 4639,
+   "load": 568,
+   "cbat": 100.0,
+   "feedIn": 4071,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 12:55:00",
+   "ppv": 4061,
+   "load": 560,
+   "cbat": 100.0,
+   "feedIn": 3501,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 13:00:00",
+   "ppv": 4621,
+   "load": 155,
+   "cbat": 100.0,
+   "feedIn": 4466,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 13:05:00",
+   "ppv": 4075,
+   "load": 159,
+   "cbat": 100.0,
+   "feedIn": 3916,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 13:10:00",
+   "ppv": 6061,
+   "load": 155,
+   "cbat": 100.0,
+   "feedIn": 5906,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 13:15:00",
+   "ppv": 4322,
+   "load": 165,
+   "cbat": 100.0,
+   "feedIn": 4157,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 13:20:00",
+   "ppv": 4536,
+   "load": 158,
+   "cbat": 100.0,
+   "feedIn": 4378,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 13:25:00",
+   "ppv": 4702,
+   "load": 156,
+   "cbat": 100.0,
+   "feedIn": 4546,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 13:30:00",
+   "ppv": 5515,
+   "load": 156,
+   "cbat": 100.0,
+   "feedIn": 5359,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 13:35:00",
+   "ppv": 4955,
+   "load": 160,
+   "cbat": 100.0,
+   "feedIn": 4795,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 13:40:00",
+   "ppv": 5918,
+   "load": 172,
+   "cbat": 100.0,
+   "feedIn": 5746,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 13:45:00",
+   "ppv": 4904,
+   "load": 158,
+   "cbat": 100.0,
+   "feedIn": 4746,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 13:50:00",
+   "ppv": 6207,
+   "load": 163,
+   "cbat": 100.0,
+   "feedIn": 6044,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 13:55:00",
+   "ppv": 5306,
+   "load": 161,
+   "cbat": 100.0,
+   "feedIn": 5145,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 14:00:00",
+   "ppv": 5581,
+   "load": 158,
+   "cbat": 100.0,
+   "feedIn": 5423,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 14:05:00",
+   "ppv": 5339,
+   "load": 162,
+   "cbat": 100.0,
+   "feedIn": 5177,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 14:10:00",
+   "ppv": 4822,
+   "load": 154,
+   "cbat": 100.0,
+   "feedIn": 4668,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 14:15:00",
+   "ppv": 4617,
+   "load": 166,
+   "cbat": 100.0,
+   "feedIn": 4451,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 14:20:00",
+   "ppv": 4347,
+   "load": 158,
+   "cbat": 100.0,
+   "feedIn": 4189,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 14:25:00",
+   "ppv": 4342,
+   "load": 158,
+   "cbat": 100.0,
+   "feedIn": 4184,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 14:30:00",
+   "ppv": 4033,
+   "load": 161,
+   "cbat": 100.0,
+   "feedIn": 3872,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 14:35:00",
+   "ppv": 5113,
+   "load": 157,
+   "cbat": 100.0,
+   "feedIn": 4956,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 14:40:00",
+   "ppv": 4836,
+   "load": 155,
+   "cbat": 100.0,
+   "feedIn": 4681,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 14:45:00",
+   "ppv": 4271,
+   "load": 165,
+   "cbat": 100.0,
+   "feedIn": 4106,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 14:50:00",
+   "ppv": 4215,
+   "load": 159,
+   "cbat": 100.0,
+   "feedIn": 4056,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 14:55:00",
+   "ppv": 4429,
+   "load": 161,
+   "cbat": 100.0,
+   "feedIn": 4268,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 15:00:00",
+   "ppv": 4042,
+   "load": 164,
+   "cbat": 100.0,
+   "feedIn": 3878,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 15:05:00",
+   "ppv": 4424,
+   "load": 159,
+   "cbat": 100.0,
+   "feedIn": 4265,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 15:10:00",
+   "ppv": 3777,
+   "load": 166,
+   "cbat": 100.0,
+   "feedIn": 3611,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 15:15:00",
+   "ppv": 4458,
+   "load": 162,
+   "cbat": 100.0,
+   "feedIn": 4296,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 15:20:00",
+   "ppv": 4819,
+   "load": 161,
+   "cbat": 100.0,
+   "feedIn": 4658,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 15:25:00",
+   "ppv": 3777,
+   "load": 157,
+   "cbat": 100.0,
+   "feedIn": 3620,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 15:30:00",
+   "ppv": 4030,
+   "load": 160,
+   "cbat": 100.0,
+   "feedIn": 3870,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 15:35:00",
+   "ppv": 3779,
+   "load": 156,
+   "cbat": 100.0,
+   "feedIn": 3623,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 15:40:00",
+   "ppv": 3641,
+   "load": 158,
+   "cbat": 100.0,
+   "feedIn": 3483,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 15:45:00",
+   "ppv": 3775,
+   "load": 160,
+   "cbat": 100.0,
+   "feedIn": 3615,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 15:50:00",
+   "ppv": 3711,
+   "load": 167,
+   "cbat": 100.0,
+   "feedIn": 3544,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 15:55:00",
+   "ppv": 3864,
+   "load": 161,
+   "cbat": 100.0,
+   "feedIn": 3703,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 16:00:00",
+   "ppv": 3414,
+   "load": 163,
+   "cbat": 100.0,
+   "feedIn": 3251,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 16:05:00",
+   "ppv": 4171,
+   "load": 154,
+   "cbat": 100.0,
+   "feedIn": 4017,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 16:10:00",
+   "ppv": 2864,
+   "load": 158,
+   "cbat": 100.0,
+   "feedIn": 2706,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 16:15:00",
+   "ppv": 2804,
+   "load": 170,
+   "cbat": 100.0,
+   "feedIn": 2634,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 16:20:00",
+   "ppv": 2852,
+   "load": 164,
+   "cbat": 100.0,
+   "feedIn": 2688,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 16:25:00",
+   "ppv": 2755,
+   "load": 159,
+   "cbat": 100.0,
+   "feedIn": 2596,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 16:30:00",
+   "ppv": 2670,
+   "load": 154,
+   "cbat": 100.0,
+   "feedIn": 2516,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 16:35:00",
+   "ppv": 3403,
+   "load": 154,
+   "cbat": 100.0,
+   "feedIn": 3249,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 16:40:00",
+   "ppv": 2809,
+   "load": 165,
+   "cbat": 100.0,
+   "feedIn": 2644,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 16:45:00",
+   "ppv": 2894,
+   "load": 160,
+   "cbat": 100.0,
+   "feedIn": 2734,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 16:50:00",
+   "ppv": 3017,
+   "load": 158,
+   "cbat": 100.0,
+   "feedIn": 2859,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 16:55:00",
+   "ppv": 3030,
+   "load": 155,
+   "cbat": 100.0,
+   "feedIn": 2875,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 17:00:00",
+   "ppv": 2624,
+   "load": 1061,
+   "cbat": 100.0,
+   "feedIn": 1563,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 17:05:00",
+   "ppv": 2517,
+   "load": 1059,
+   "cbat": 100.0,
+   "feedIn": 1458,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 17:10:00",
+   "ppv": 2152,
+   "load": 1063,
+   "cbat": 100.0,
+   "feedIn": 1089,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 17:15:00",
+   "ppv": 1928,
+   "load": 1062,
+   "cbat": 100.0,
+   "feedIn": 866,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 17:20:00",
+   "ppv": 2169,
+   "load": 1061,
+   "cbat": 100.0,
+   "feedIn": 1108,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 17:25:00",
+   "ppv": 1635,
+   "load": 1066,
+   "cbat": 100.0,
+   "feedIn": 569,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 17:30:00",
+   "ppv": 1716,
+   "load": 1054,
+   "cbat": 100.0,
+   "feedIn": 662,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 17:35:00",
+   "ppv": 2035,
+   "load": 1055,
+   "cbat": 100.0,
+   "feedIn": 980,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 17:40:00",
+   "ppv": 1839,
+   "load": 1061,
+   "cbat": 100.0,
+   "feedIn": 778,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 17:45:00",
+   "ppv": 1782,
+   "load": 1058,
+   "cbat": 100.0,
+   "feedIn": 724,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 17:50:00",
+   "ppv": 1807,
+   "load": 1062,
+   "cbat": 100.0,
+   "feedIn": 745,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 17:55:00",
+   "ppv": 1678,
+   "load": 1062,
+   "cbat": 100.0,
+   "feedIn": 616,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 18:00:00",
+   "ppv": 1395,
+   "load": 1057,
+   "cbat": 100.0,
+   "feedIn": 338,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 18:05:00",
+   "ppv": 1421,
+   "load": 1061,
+   "cbat": 100.0,
+   "feedIn": 360,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 18:10:00",
+   "ppv": 1500,
+   "load": 1060,
+   "cbat": 100.0,
+   "feedIn": 440,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 18:15:00",
+   "ppv": 965,
+   "load": 1054,
+   "cbat": 99.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 18:20:00",
+   "ppv": 1140,
+   "load": 1055,
+   "cbat": 100.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 18:25:00",
+   "ppv": 1048,
+   "load": 1061,
+   "cbat": 100.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 18:30:00",
+   "ppv": 822,
+   "load": 1056,
+   "cbat": 99.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 18:35:00",
+   "ppv": 873,
+   "load": 1059,
+   "cbat": 99.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 18:40:00",
+   "ppv": 855,
+   "load": 1056,
+   "cbat": 99.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 18:45:00",
+   "ppv": 723,
+   "load": 1059,
+   "cbat": 99.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 18:50:00",
+   "ppv": 629,
+   "load": 1054,
+   "cbat": 98.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 18:55:00",
+   "ppv": 572,
+   "load": 1054,
+   "cbat": 98.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 19:00:00",
+   "ppv": 530,
+   "load": 1058,
+   "cbat": 98.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 19:05:00",
+   "ppv": 542,
+   "load": 1059,
+   "cbat": 97.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 19:10:00",
+   "ppv": 452,
+   "load": 1064,
+   "cbat": 97.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 19:15:00",
+   "ppv": 301,
+   "load": 1058,
+   "cbat": 96.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 19:20:00",
+   "ppv": 233,
+   "load": 1056,
+   "cbat": 95.7,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 19:25:00",
+   "ppv": 292,
+   "load": 1071,
+   "cbat": 95.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 19:30:00",
+   "ppv": 209,
+   "load": 1059,
+   "cbat": 94.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 19:35:00",
+   "ppv": 145,
+   "load": 1061,
+   "cbat": 93.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 19:40:00",
+   "ppv": 100,
+   "load": 1056,
+   "cbat": 92.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 19:45:00",
+   "ppv": 58,
+   "load": 1064,
+   "cbat": 92.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 19:50:00",
+   "ppv": 39,
+   "load": 1066,
+   "cbat": 91.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 19:55:00",
+   "ppv": 16,
+   "load": 1056,
+   "cbat": 90.3,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 20:00:00",
+   "ppv": 0,
+   "load": 1062,
+   "cbat": 89.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 20:05:00",
+   "ppv": 0,
+   "load": 1055,
+   "cbat": 88.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 20:10:00",
+   "ppv": 0,
+   "load": 1063,
+   "cbat": 87.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 20:15:00",
+   "ppv": 0,
+   "load": 1066,
+   "cbat": 86.7,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 20:20:00",
+   "ppv": 0,
+   "load": 1054,
+   "cbat": 85.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 20:25:00",
+   "ppv": 0,
+   "load": 1063,
+   "cbat": 85.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 20:30:00",
+   "ppv": 0,
+   "load": 1069,
+   "cbat": 84.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 20:35:00",
+   "ppv": 0,
+   "load": 1057,
+   "cbat": 83.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 20:40:00",
+   "ppv": 0,
+   "load": 1056,
+   "cbat": 82.3,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 20:45:00",
+   "ppv": 0,
+   "load": 1061,
+   "cbat": 81.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 20:50:00",
+   "ppv": 0,
+   "load": 1054,
+   "cbat": 80.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 20:55:00",
+   "ppv": 0,
+   "load": 1055,
+   "cbat": 79.7,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 21:00:00",
+   "ppv": 0,
+   "load": 1056,
+   "cbat": 78.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 21:05:00",
+   "ppv": 0,
+   "load": 1063,
+   "cbat": 77.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 21:10:00",
+   "ppv": 0,
+   "load": 1060,
+   "cbat": 77.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 21:15:00",
+   "ppv": 0,
+   "load": 1061,
+   "cbat": 76.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 21:20:00",
+   "ppv": 0,
+   "load": 1056,
+   "cbat": 75.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 21:25:00",
+   "ppv": 0,
+   "load": 1066,
+   "cbat": 74.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 21:30:00",
+   "ppv": 0,
+   "load": 1064,
+   "cbat": 73.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 21:35:00",
+   "ppv": 0,
+   "load": 1056,
+   "cbat": 72.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 21:40:00",
+   "ppv": 0,
+   "load": 1060,
+   "cbat": 71.7,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 21:45:00",
+   "ppv": 0,
+   "load": 1065,
+   "cbat": 70.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 21:50:00",
+   "ppv": 0,
+   "load": 1058,
+   "cbat": 69.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 21:55:00",
+   "ppv": 0,
+   "load": 1058,
+   "cbat": 69.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 22:00:00",
+   "ppv": 0,
+   "load": 154,
+   "cbat": 68.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 22:05:00",
+   "ppv": 0,
+   "load": 159,
+   "cbat": 68.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 22:10:00",
+   "ppv": 0,
+   "load": 157,
+   "cbat": 68.7,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 22:15:00",
+   "ppv": 0,
+   "load": 176,
+   "cbat": 68.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 22:20:00",
+   "ppv": 0,
+   "load": 158,
+   "cbat": 68.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 22:25:00",
+   "ppv": 0,
+   "load": 157,
+   "cbat": 68.3,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 22:30:00",
+   "ppv": 0,
+   "load": 164,
+   "cbat": 68.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 22:35:00",
+   "ppv": 0,
+   "load": 155,
+   "cbat": 68.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 22:40:00",
+   "ppv": 0,
+   "load": 166,
+   "cbat": 67.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 22:45:00",
+   "ppv": 0,
+   "load": 158,
+   "cbat": 67.7,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 22:50:00",
+   "ppv": 0,
+   "load": 170,
+   "cbat": 67.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 22:55:00",
+   "ppv": 0,
+   "load": 155,
+   "cbat": 67.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 23:00:00",
+   "ppv": 0,
+   "load": 159,
+   "cbat": 67.3,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 23:05:00",
+   "ppv": 0,
+   "load": 156,
+   "cbat": 67.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 23:10:00",
+   "ppv": 0,
+   "load": 172,
+   "cbat": 67.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 23:15:00",
+   "ppv": 0,
+   "load": 160,
+   "cbat": 66.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 23:20:00",
+   "ppv": 0,
+   "load": 169,
+   "cbat": 66.8,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 23:25:00",
+   "ppv": 0,
+   "load": 156,
+   "cbat": 66.6,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 23:30:00",
+   "ppv": 0,
+   "load": 157,
+   "cbat": 66.5,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 23:35:00",
+   "ppv": 0,
+   "load": 156,
+   "cbat": 66.4,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 23:40:00",
+   "ppv": 0,
+   "load": 156,
+   "cbat": 66.2,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 23:45:00",
+   "ppv": 0,
+   "load": 156,
+   "cbat": 66.1,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 23:50:00",
+   "ppv": 0,
+   "load": 160,
+   "cbat": 66.0,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  },
+  {
+   "sysSn": "DEMO000000000001",
+   "uploadTime": "2025-06-01 23:55:00",
+   "ppv": 0,
+   "load": 162,
+   "cbat": 65.9,
+   "feedIn": 0,
+   "gridCharge": 0,
+   "pchargingPile": 0
+  }
+ ]
+}
