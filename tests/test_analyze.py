@@ -173,6 +173,7 @@ def test_night_window_changes_baseline(
 def test_huge_z_threshold_suppresses_rolling_flags(
     synthetic_input: tuple[list[PowerSample], list[DailyEnergy]],
 ) -> None:
+    """Night spikes do not use the z-score (they use spike_routine_share)."""
     samples, daily = synthetic_input
     result = analyze_data(SN, samples, daily, replace(Settings(), z_threshold=1e9))
     assert {a.kind for a in result.anomalies} == {"night_spike"}

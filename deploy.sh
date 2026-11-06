@@ -36,6 +36,11 @@ KEY="$(conf DEPLOY_SSH_KEY)"
 APP_PATH="$(conf DEPLOY_PATH '~/alphaess-energy-analyzer')"
 KEEP="$(conf DEPLOY_KEEP_RELEASES 3)"
 ONCALENDAR="$(conf DEPLOY_ONCALENDAR '*-*-* 03:30:00')"
+WEB_HOST="$(conf DEPLOY_WEB_HOST)"
+WEB_PORT="$(conf DEPLOY_WEB_PORT 8088)"
+REFRESH="$(conf DEPLOY_REFRESH_ONCALENDAR)"
+case "$WEB_PORT" in ''|*[!0-9]*) die "DEPLOY_WEB_PORT must be a number" ;; esac
+case "$WEB_HOST" in *[!0-9A-Za-z.:-]*) die "DEPLOY_WEB_HOST must be an address" ;; esac
 [ -n "$HOST" ] && [ -n "$USER_" ] || die "DEPLOY_HOST and DEPLOY_USER must be set in $CONF"
 case "$KEEP" in ''|*[!0-9]*) die "DEPLOY_KEEP_RELEASES must be a number" ;; esac
 [ "$KEEP" -ge 2 ] || die "DEPLOY_KEEP_RELEASES must be >= 2 (rollback needs a previous release)"
@@ -81,7 +86,7 @@ echo "$APP"
 EOF
 
 read -r -d '' INSTALL <<'EOF' || true
-TS="$2"; COMMIT="$3"; KEEP="$4"; ONCALENDAR="$5"
+TS="$2"; COMMIT="$3"; KEEP="$4"; ONCALENDAR="$5"; WEB_HOST="$6"; WEB_PORT="$7"; REFRESH="$8"
 REL="$APP/releases/$TS"
 cd "$REL"
 echo "$COMMIT" > REVISION
@@ -101,9 +106,52 @@ UNIT_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/systemd/user"
 mkdir -p "$UNIT_DIR"
 sed -e "s|@APP_DIR@|$APP|g" "$REL/systemd/energy-analyzer.service" > "$UNIT_DIR/energy-analyzer.service"
 sed -e "s|@ONCALENDAR@|$ONCALENDAR|g" "$REL/systemd/energy-analyzer.timer" > "$UNIT_DIR/energy-analyzer.timer"
+render() {  # render a unit template into the user unit folder
+  sed -e "s|@APP_DIR@|$APP|g" -e "s|@ONCALENDAR@|$ONCALENDAR|g" \
+      -e "s|@WEB_HOST@|$WEB_HOST|g" -e "s|@WEB_PORT@|$WEB_PORT|g" \
+      -e "s|@REFRESH_ONCALENDAR@|$REFRESH|g" "$REL/systemd/$1" > "$UNIT_DIR/$1"
+}
+if [ -n "$REFRESH" ]; then
+  render energy-analyzer-refresh.service; render energy-analyzer-refresh.timer
+fi
+if [ -n "$WEB_HOST" ]; then
+  render energy-analyzer-web.service
+  ENVF="$APP/shared/.env"
+  touch "$ENVF"; chmod 600 "$ENVF"
+  grep -q '^WEB_USER=' "$ENVF" || echo "WEB_USER=energy" >> "$ENVF"
+  if ! grep -q '^WEB_PASSWORD=.' "$ENVF"; then
+    # Generated on the target and never printed: read it there with `grep WEB_PASSWORD`.
+    echo "WEB_PASSWORD=$(python3 -c 'import secrets; print(secrets.token_urlsafe(18))')" >> "$ENVF"
+    echo "dashboard password generated in shared/.env"
+  fi
+fi
 systemctl --user daemon-reload
 systemctl --user enable --now energy-analyzer.timer >/dev/null 2>&1
 systemctl --user is-active energy-analyzer.timer
+if [ -n "$REFRESH" ]; then
+  systemctl --user enable --now energy-analyzer-refresh.timer >/dev/null 2>&1
+  echo "refresh timer: $(systemctl --user is-active energy-analyzer-refresh.timer)"
+else
+  systemctl --user disable --now energy-analyzer-refresh.timer >/dev/null 2>&1 || true
+fi
+if [ -n "$WEB_HOST" ]; then
+  systemctl --user enable energy-analyzer-web.service >/dev/null 2>&1
+  systemctl --user restart energy-analyzer-web.service
+  code=000
+  for _ in 1 2 3 4 5 6 7 8 9 10; do
+    code="$(python3 -c "import urllib.request as u, urllib.error as e
+try: print(u.urlopen('http://127.0.0.1:$WEB_PORT/api/meta', timeout=3).status)
+except e.HTTPError as x: print(x.code)
+except Exception: print('000')")"
+    [ "$code" != 000 ] && break
+    sleep 1
+  done
+  echo "dashboard on port $WEB_PORT: HTTP $code without login (401 = protected, OK)"
+  [ "$code" = 401 ] || [ "$code" = 200 -a "$WEB_HOST" = 127.0.0.1 ] \
+    || { journalctl --user -u energy-analyzer-web.service -n 20 --no-pager >&2; exit 1; }
+else
+  systemctl --user disable --now energy-analyzer-web.service >/dev/null 2>&1 || true
+fi
 current="$(readlink "$APP/current")"
 ls -1 "$APP/releases" | sort | head -n "-$KEEP" | while read -r old; do
   [ "releases/$old" = "$current" ] && continue
@@ -126,6 +174,8 @@ if [ "$DRY_RUN" = 1 ]; then
   say "would deploy HEAD $COMMIT to $DEST:$APP_PATH/releases/$TS"
   say "would install venv, run selftest, switch current, install energy-analyzer.timer ($ONCALENDAR)"
   say "would keep the newest $KEEP releases; would copy .env to shared/.env only if missing"
+  [ -n "$REFRESH" ] && say "would refresh today's data on: $REFRESH"
+  [ -n "$WEB_HOST" ] && say "would run the dashboard on $WEB_HOST:$WEB_PORT (login required)"
   exit 0
 fi
 
@@ -133,6 +183,15 @@ say "preflight on $DEST"
 APP="$(printf '%s\n%s\n' "$RESOLVE" "$PREFLIGHT" | remote_script "$APP_PATH" | tail -n1)"
 [ -n "$APP" ] || die "preflight failed"
 REL="$APP/releases/$TS"
+
+if [ -f .env ]; then
+  say "runtime secrets"
+  # The .env content travels over stdin; the script on the command line holds no secrets.
+  "${SSH[@]}" "$DEST" \
+    "bash -c $(printf '%q' "$RESOLVE"$'\n'"$COPY_ENV") _ $(printf '%q' "$APP_PATH")" < .env
+else
+  say "no local .env - create $APP_PATH/shared/.env on the target yourself (chmod 600)"
+fi
 
 say "transferring HEAD $COMMIT to releases/$TS"
 if command -v rsync >/dev/null 2>&1 && "${SSH[@]}" "$DEST" "command -v rsync" >/dev/null; then
@@ -144,18 +203,10 @@ else
   git archive --format=tar HEAD | "${SSH[@]}" "$DEST" "mkdir -p $(printf '%q' "$REL") && tar -x -C $(printf '%q' "$REL")"
 fi
 
-say "installing, selftest, switching current, systemd timer"
+say "installing, selftest, switching current, systemd units"
 printf '%s\n%s\n' "$RESOLVE" "$INSTALL" \
-  | remote_script "$APP_PATH" "$TS" "$COMMIT" "$KEEP" "$ONCALENDAR" \
+  | remote_script "$APP_PATH" "$TS" "$COMMIT" "$KEEP" "$ONCALENDAR" "$WEB_HOST" "$WEB_PORT" \
+    "$REFRESH" \
   || die "install failed (current release unchanged)"
-
-if [ -f .env ]; then
-  say "runtime secrets"
-  # The .env content travels over stdin; the script on the command line holds no secrets.
-  "${SSH[@]}" "$DEST" \
-    "bash -c $(printf '%q' "$RESOLVE"$'\n'"$COPY_ENV") _ $(printf '%q' "$APP_PATH")" < .env
-else
-  say "no local .env - create $APP_PATH/shared/.env on the target yourself (chmod 600)"
-fi
 
 say "done: $DEST:$APP/current -> releases/$TS ($COMMIT)"

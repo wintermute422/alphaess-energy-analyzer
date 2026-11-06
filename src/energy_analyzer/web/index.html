@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="referrer" content="no-referrer">
+<title>Energy Analyzer</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="app.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main" id="skip">Skip to content</a>
+<header class="top">
+  <div class="wrap top-row">
+    <a class="brand" href="#/overview">
+      <img src="favicon.svg" alt="" width="22" height="22">
+      <span>Energy Analyzer</span>
+    </a>
+    <span id="demo-badge" class="badge demo" hidden title="Synthetic demo data, no real system">DEMO</span>
+    <dl class="meta" id="meta" aria-label="System and data status"></dl>
+  </div>
+  <nav class="wrap nav" aria-label="Main">
+    <a href="#/overview" data-route="overview">Overview</a>
+    <a href="#/day" data-route="day">Day</a>
+    <a href="#/heatmap" data-route="heatmap">Heatmap</a>
+    <a href="#/analysis" data-route="analysis">Analysis</a>
+    <a href="#/events" data-route="events">Events</a>
+  </nav>
+</header>
+<div class="wrap">
+  <div id="notice" class="notice" role="alert" hidden></div>
+</div>
+<main id="main" class="wrap main" tabindex="-1" aria-live="polite">
+  <p class="loading">Loading…</p>
+  <noscript><p>This dashboard needs JavaScript. The <a href="/report.html">printable report</a> works without it.</p></noscript>
+</main>
+<footer class="wrap foot">
+  <a href="/report.html">Printable report</a>
+  <span>Unofficial community tool, not affiliated with Alpha ESS. Data stays on this machine.</span>
+  <span id="version" class="muted"></span>
+</footer>
+<div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+</body>
+</html>

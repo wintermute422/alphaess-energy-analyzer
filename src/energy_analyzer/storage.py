@@ -11,7 +11,7 @@ from itertools import pairwise
 from pathlib import Path
 from typing import Any
 
-from energy_analyzer.models import DailyEnergy, PowerSample
+from energy_analyzer.models import DailyEnergy, Event, PowerSample
 
 # Append-only: never edit a released migration, add a new one.
 MIGRATIONS: list[tuple[int, str]] = [
@@ -57,6 +57,23 @@ MIGRATIONS: list[tuple[int, str]] = [
             fetched_at  TEXT NOT NULL,
             PRIMARY KEY (sys_sn, day, endpoint)
         ) WITHOUT ROWID;
+        """,
+    ),
+    (
+        2,
+        """
+        CREATE TABLE events (
+            id          INTEGER PRIMARY KEY AUTOINCREMENT,
+            kind        TEXT NOT NULL,
+            title       TEXT NOT NULL,
+            start_day   TEXT NOT NULL,
+            end_day     TEXT,
+            effect      TEXT NOT NULL,
+            note        TEXT NOT NULL DEFAULT '',
+            created_at  TEXT NOT NULL,
+            updated_at  TEXT NOT NULL
+        );
+        CREATE INDEX events_start ON events (start_day);
         """,
     ),
 ]
@@ -105,8 +122,13 @@ class Storage:
         self.path = str(path)
         if self.path != ":memory:":
             Path(self.path).parent.mkdir(parents=True, exist_ok=True)
-        self.conn = sqlite3.connect(self.path)
+        # The web server opens one Storage per request; check_same_thread=False only allows
+        # closing it from the handler thread.
+        self.conn = sqlite3.connect(self.path, timeout=30, check_same_thread=False)
         self.conn.execute("PRAGMA foreign_keys = ON")
+        if self.path != ":memory:":
+            # WAL lets the dashboard read while the refresh timer writes.
+            self.conn.execute("PRAGMA journal_mode = WAL")
         self.migrate()
 
     def __enter__(self) -> Storage:
@@ -194,7 +216,7 @@ class Storage:
     # --- reads ----------------------------------------------------------------------------
 
     def count(self, table: str) -> int:
-        if table not in {"systems", "power_samples", "daily_energy", "fetch_log"}:
+        if table not in {"systems", "power_samples", "daily_energy", "fetch_log", "events"}:
             raise ValueError(f"unknown table {table!r}")
         return int(self.conn.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0])
 
@@ -244,3 +266,59 @@ class Storage:
                 if value is not None:
                     totals[col] += value * hours / 1000.0
         return totals
+
+    def last_fetch(self) -> str | None:
+        row = self.conn.execute("SELECT MAX(fetched_at) FROM fetch_log").fetchone()
+        return str(row[0]) if row and row[0] else None
+
+    def day_bounds(self, sys_sn: str) -> tuple[str | None, str | None]:
+        row = self.conn.execute(
+            "SELECT MIN(substr(ts, 1, 10)), MAX(substr(ts, 1, 10)) FROM power_samples "
+            "WHERE sys_sn = ?",
+            (sys_sn,),
+        ).fetchone()
+        return (row[0], row[1]) if row else (None, None)
+
+    # --- events -----------------------------------------------------------------------------
+
+    _EVENT_COLS = "id, kind, title, start_day, end_day, effect, note"
+
+    def events(self) -> list[Event]:
+        cur = self.conn.execute(f"SELECT {self._EVENT_COLS} FROM events ORDER BY start_day, id")
+        return [Event(*row) for row in cur]
+
+    def event(self, event_id: int) -> Event | None:
+        row = self.conn.execute(
+            f"SELECT {self._EVENT_COLS} FROM events WHERE id = ?", (event_id,)
+        ).fetchone()
+        return Event(*row) if row else None
+
+    def save_event(self, e: Event) -> Event:
+        """Insert (id None) or update an event; returns it with its id."""
+        now = _now()
+        values = (e.kind, e.title, e.start_day, e.end_day, e.effect, e.note)
+        with self.conn:
+            if e.id is None:
+                cur = self.conn.execute(
+                    "INSERT INTO events (kind, title, start_day, end_day, effect, note, "
+                    "created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                    (*values, now, now),
+                )
+                new_id = int(cur.lastrowid or 0)
+            else:
+                cur = self.conn.execute(
+                    "UPDATE events SET kind = ?, title = ?, start_day = ?, end_day = ?, "
+                    "effect = ?, note = ?, updated_at = ? WHERE id = ?",
+                    (*values, now, e.id),
+                )
+                if cur.rowcount == 0:
+                    raise KeyError(e.id)
+                new_id = e.id
+        saved = self.event(new_id)
+        assert saved is not None
+        return saved
+
+    def delete_event(self, event_id: int) -> bool:
+        with self.conn:
+            cur = self.conn.execute("DELETE FROM events WHERE id = ?", (event_id,))
+        return cur.rowcount > 0

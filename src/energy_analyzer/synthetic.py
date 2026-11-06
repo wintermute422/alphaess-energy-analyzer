@@ -36,6 +36,7 @@ class AnomalySpec:
     high_baseline: tuple[int, ...] = ()  # standby load ~2.6x for the whole day
     night_spike: tuple[int, ...] = ()  # +2.5 kW between 03:00 and 03:30
     high_consumption: tuple[int, ...] = ()  # daytime load x2.2 (e.g. a heater left on)
+    away: tuple[int, ...] = ()  # nobody home: only the standby load
 
 
 DEFAULT_ANOMALIES = AnomalySpec(high_baseline=(40,), night_spike=(47,), high_consumption=(53,))
@@ -82,8 +83,10 @@ def last_power(sys_sn: str = DEMO_SN) -> dict[str, Any]:
     return {"sysSn": sys_sn, "ppv": 2310, "pload": 640, "soc": 72.5, "pgrid": 0, "pbat": -1670}
 
 
-def _load_w(rng: random.Random, hour: float, base: float, heavy: bool) -> float:
+def _load_w(rng: random.Random, hour: float, base: float, heavy: bool, away: bool) -> float:
     load = base + abs(rng.gauss(0, 8))
+    if away:
+        return load
     if 6.5 <= hour < 8.5:
         load += 600
     if 11.0 <= hour < 13.0:
@@ -133,7 +136,7 @@ def generate(
         totals = dict.fromkeys(("pv", "imp", "exp", "chg", "dis"), 0.0)
         for slot in range(SLOTS_PER_DAY):
             hour = slot * slot_h
-            load = _load_w(rng, hour, base, heavy)
+            load = _load_w(rng, hour, base, heavy, offset in anomalies.away)
             if spike and 3.0 <= hour < 3.5:
                 load += 2500
             pv = round(_pv_w(rng, hour, season, cloud))

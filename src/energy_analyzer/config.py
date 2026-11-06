@@ -38,11 +38,19 @@ rolling_days = 28        # window of the rolling median used for anomaly detecti
 z_threshold = 3.5        # robust z-score above which a day is flagged ...
 min_rel_deviation = 0.2  # ... if it also differs >= 20 % from the rolling median
 spike_factor = 3.0       # night sample > spike_factor x baseline ...
-spike_min_w = 500        # ... and at least this many watts above it = night spike
+spike_min_w = 500        # ... and at least this many watts above it = night spike,
+spike_routine_share = 0.25  # unless >= 25 % of recent nights had a similar peak (heat pump)
 min_history_days = 7     # days of history needed before a day can be flagged
 
 [report]
 title = "Energy report"
+
+[web]
+# `energy-analyzer serve`: the dashboard. Listening on anything but 127.0.0.1 requires
+# WEB_PASSWORD in .env (login user below).
+host = "127.0.0.1"
+port = 8088
+user = "energy"
 """
 
 # config.toml key -> Settings field
@@ -61,8 +69,12 @@ _TOML_KEYS: dict[tuple[str, str], str] = {
     ("analysis", "min_rel_deviation"): "min_rel_deviation",
     ("analysis", "spike_factor"): "spike_factor",
     ("analysis", "spike_min_w"): "spike_min_w",
+    ("analysis", "spike_routine_share"): "spike_routine_share",
     ("analysis", "min_history_days"): "min_history_days",
     ("report", "title"): "report_title",
+    ("web", "host"): "web_host",
+    ("web", "port"): "web_port",
+    ("web", "user"): "web_user",
 }
 
 # environment / .env name -> Settings field
@@ -72,6 +84,10 @@ _ENV_KEYS: dict[str, str] = {
     "ALPHA_SYSTEM_SN": "sys_sn",
     "ENERGY_DB": "db_path",
     "ALPHA_BASE_URL": "base_url",
+    "WEB_USER": "web_user",
+    "WEB_PASSWORD": "web_password",
+    "WEB_HOST": "web_host",
+    "WEB_PORT": "web_port",
 }
 
 
@@ -97,8 +113,13 @@ class Settings:
     min_rel_deviation: float = 0.2
     spike_factor: float = 3.0
     spike_min_w: float = 500.0
+    spike_routine_share: float = 0.25
     min_history_days: int = 7
     report_title: str = "Energy report"
+    web_host: str = "127.0.0.1"
+    web_port: int = 8088
+    web_user: str = "energy"
+    web_password: str | None = field(default=None, repr=False)
     config_path: Path | None = None
     env_path: Path | None = None
 
@@ -143,7 +164,7 @@ def _coerce(name: str, value: Any) -> Any:
     except (TypeError, ValueError) as exc:
         raise ConfigError(f"invalid value for {name}: {value!r}") from exc
     text = str(value).strip()
-    return text or None if name in ("app_id", "app_secret", "sys_sn") else text
+    return text or None if name in ("app_id", "app_secret", "sys_sn", "web_password") else text
 
 
 def load_settings(

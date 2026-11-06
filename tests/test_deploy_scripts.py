@@ -26,7 +26,8 @@ def test_bash_syntax(script: str) -> None:
 @pytest.mark.parametrize("script", SCRIPTS)
 def test_no_hardcoded_hosts_users_or_paths(script: str) -> None:
     text = (ROOT / script).read_text("utf-8")
-    assert not re.search(r"\b\d{1,3}(\.\d{1,3}){3}\b", text)
+    ips = set(re.findall(r"\b\d{1,3}(?:\.\d{1,3}){3}\b", text))
+    assert ips <= {"127.0.0.1", "0.0.0.0"}  # loopback/any are fine, real hosts are not
     assert not re.search(r"/home/[a-z]", text)
     assert "sudo" not in text.replace("no sudo", "")
 

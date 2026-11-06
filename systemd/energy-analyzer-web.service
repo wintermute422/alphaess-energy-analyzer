@@ -1,0 +1,18 @@
+# systemd USER service template for the web dashboard. deploy.sh replaces @APP_DIR@,
+# @WEB_HOST@ and @WEB_PORT@. Listening on anything but 127.0.0.1 requires WEB_PASSWORD in
+# @APP_DIR@/shared/.env (deploy.sh generates one if it is missing).
+[Unit]
+Description=AlphaESS Energy Analyzer - web dashboard
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=@APP_DIR@/shared
+ExecStart=@APP_DIR@/current/.venv/bin/energy-analyzer --config @APP_DIR@/shared/config.toml serve --host @WEB_HOST@ --port @WEB_PORT@
+Restart=on-failure
+RestartSec=10
+Nice=5
+
+[Install]
+WantedBy=default.target

@@ -7,6 +7,7 @@ import logging
 import os
 import sys
 from collections.abc import Sequence
+from dataclasses import replace
 from datetime import date, datetime, timedelta
 from pathlib import Path
 
@@ -77,6 +78,15 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--to", dest="last", type=_date, metavar="YYYY-MM-DD")
 
     sub.add_parser("live", help="show the latest live power values")
+
+    sub.add_parser("refresh", help="fetch today only (2 API calls), for frequent dashboard updates")
+
+    s = sub.add_parser("serve", help="run the web dashboard")
+    s.add_argument("--host", help="address to listen on (default from [web] host: 127.0.0.1)")
+    s.add_argument("--port", type=int, help="port (default from [web] port: 8088)")
+    s.add_argument(
+        "--demo", action="store_true", help="serve 120 days of synthetic demo data (no account)"
+    )
 
     s = sub.add_parser("selftest", help="run the full pipeline on bundled synthetic data")
     s.add_argument("--keep", type=Path, help="keep the selftest DB and report in this folder")
@@ -165,6 +175,15 @@ def _fetcher(
     return Fetcher(client, db, sn), client
 
 
+def _known_system_fetcher(settings: Settings, db: Storage, transport: Transport | None) -> Fetcher:
+    """Like _fetcher, but skips getEssList when the system is already known (saves a call)."""
+    systems = db.systems()
+    sn = settings.sys_sn or (systems[0] if len(systems) == 1 else None)
+    if sn is None:
+        return _fetcher(settings, db, transport)[0]
+    return Fetcher(_client(settings, transport), db, sn)
+
+
 def cmd_backfill(args: argparse.Namespace, settings: Settings, transport: Transport | None) -> int:
     if args.last < args.first:
         raise ConfigError("--to must not be before --from")
@@ -234,6 +253,52 @@ def cmd_live(args: argparse.Namespace, settings: Settings, transport: Transport 
     return EXIT_OK
 
 
+def cmd_refresh(args: argparse.Namespace, settings: Settings, transport: Transport | None) -> int:
+    with Storage(settings.db_path) as db:
+        _print_day(_known_system_fetcher(settings, db, transport).fetch_day(date.today()))
+    return EXIT_OK
+
+
+def cmd_serve(args: argparse.Namespace, settings: Settings, transport: Transport | None) -> int:
+    import tempfile
+
+    from energy_analyzer.web import App, make_server
+
+    host = args.host or settings.web_host
+    port = args.port or settings.web_port
+    tmp = None
+    if args.demo:
+        from energy_analyzer.demo import DEMO_APP_ID, DEMO_APP_SECRET, build_demo
+
+        tmp = tempfile.TemporaryDirectory(prefix="energy-demo-")
+        db_path = Path(tmp.name) / "demo.db"
+        _say("building demo data (120 synthetic days) ...")
+        transport = build_demo(db_path)
+        settings = replace(
+            settings,
+            db_path=db_path,
+            sys_sn=None,
+            app_id=DEMO_APP_ID,
+            app_secret=DEMO_APP_SECRET,
+            base_url="https://demo.invalid/api",
+        )
+    app = App(settings, transport=transport, demo=args.demo)
+    server = make_server(app, host, port)
+    shown = "localhost" if host in ("127.0.0.1", "::1") else host
+    _say(f"dashboard: http://{shown}:{server.server_address[1]}/ (Ctrl+C to stop)")
+    if app.auth:
+        _say(f"login user: {settings.web_user} (password: WEB_PASSWORD in your .env)")
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        _say("stopped")
+    finally:
+        server.server_close()
+        if tmp is not None:
+            tmp.cleanup()
+    return EXIT_OK
+
+
 def cmd_selftest(args: argparse.Namespace, settings: Settings, transport: Transport | None) -> int:
     from energy_analyzer.selftest import run_selftest
 
@@ -246,6 +311,8 @@ COMMANDS = {
     "daily": cmd_daily,
     "report": cmd_report,
     "live": cmd_live,
+    "refresh": cmd_refresh,
+    "serve": cmd_serve,
     "selftest": cmd_selftest,
 }
 
@@ -257,8 +324,8 @@ def main(argv: Sequence[str] | None = None, *, transport: Transport | None = Non
         format="%(levelname)s %(name)s: %(message)s",
     )
     try:
-        if args.command == "selftest":
-            settings = Settings()  # selftest must not depend on local config or credentials
+        if args.command == "selftest" or (args.command == "serve" and args.demo):
+            settings = Settings()  # must not depend on local config, data or credentials
         else:
             settings = load_settings(
                 args.config, args.env_file, {"db_path": args.db, "sys_sn": args.sn}

@@ -1,0 +1,11 @@
+# systemd USER timer template. deploy.sh replaces @REFRESH_ONCALENDAR@ (default: every 15 min).
+[Unit]
+Description=Refresh today's AlphaESS data for the dashboard
+
+[Timer]
+OnCalendar=@REFRESH_ONCALENDAR@
+RandomizedDelaySec=60
+Persistent=false
+
+[Install]
+WantedBy=timers.target

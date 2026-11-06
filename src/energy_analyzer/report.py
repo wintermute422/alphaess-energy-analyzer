@@ -118,7 +118,7 @@ def _c(value: float) -> str:
 
 
 def _anomaly_value(kind: str, value: float) -> str:
-    if kind == "consumption":
+    if kind in ("consumption", "not_lower"):
         return _num(value, 2, "kWh")
     if kind in ("baseline", "night_spike"):
         return _num(value, 0, "W")
@@ -421,7 +421,7 @@ def _summary(result: AnalysisResult) -> str:
         ("Avg autarky", _pct(_mean([d.self_sufficiency for d in days]))),
         ("Current baseline (7-day median)", _num(_current_baseline(days), 0, "W")),
         ("Baseline trend per 30 days", _signed(result.baseline_trend_w_per_30d, 1, "W")),
-        ("Anomalies", str(len(result.anomalies))),
+        ("Anomalies (unexpected)", str(sum(a.expected_by is None for a in result.anomalies))),
     ]
     body = "\n".join(_kpi(k, v) for k, v in kpis)
     return (
@@ -435,7 +435,8 @@ def _anomaly_row(a: Anomaly) -> str:
         f'<td class="num">{_e(_anomaly_value(a.kind, a.value))}</td>'
         f'<td class="num">{_e(_anomaly_value(a.kind, a.reference))}</td>'
         f'<td class="num">{_e(_num(a.score, 2))}</td>'
-        f'<td class="msg">{_e(a.message)}</td></tr>'
+        f'<td class="msg">{_e(a.message)}'
+        f"{_e(f' (expected: {a.expected_by})') if a.expected_by else ''}</td></tr>"
     )
 
 

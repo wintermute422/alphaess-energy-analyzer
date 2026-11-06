@@ -27,12 +27,17 @@ systemctl --user start energy-analyzer.service         # run once now
 journalctl --user -u energy-analyzer.service -n 50     # logs
 ```
 
+For a dashboard that is never more than 15 minutes behind, add the refresh timer
+(templates `energy-analyzer-refresh.service` / `.timer`, `@REFRESH_ONCALENDAR@` = `*:0/15`)
+and the dashboard service (`energy-analyzer-web.service`); `deploy.sh` installs both.
+
 User timers only run while you are logged in unless lingering is enabled for your user
 (one-time, needs an administrator): `sudo loginctl enable-linger "$USER"`.
 
 ## cron
 
 ```cron
+*/15 * * * * cd <install-dir>/shared && <install-dir>/current/.venv/bin/energy-analyzer --config config.toml refresh >> energy-analyzer.log 2>&1
 30 3 * * * cd <install-dir>/shared && <install-dir>/current/.venv/bin/energy-analyzer --config config.toml daily --report report.html >> energy-analyzer.log 2>&1
 ```
 
