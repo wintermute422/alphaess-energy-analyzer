@@ -59,3 +59,8 @@ Read CLAUDE.md, plan.md, progress.md; run `git status` and `git log -3`; continu
 - mypy targets 3.10, so the `tomli` fallback branch is type-checked: keep `tomli` in the dev extras.
 - Rate-limit tests must timestamp inside the transport, not around the client call
   (the client sleeps before sending).
+- Never write an en dash as `"–"`: ruff format turns it into a literal and RUF001 fails.
+  Use `chr(0x2013)` or a plain hyphen.
+- Anomaly flags need |robust z| > z_threshold AND >= min_rel_deviation (20 %) from the rolling
+  median. Found when the synthetic data produced z = 3.55 on +11 % days: fix the detector,
+  never the test or the default threshold.

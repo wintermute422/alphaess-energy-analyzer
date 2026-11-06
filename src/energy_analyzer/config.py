@@ -35,7 +35,8 @@ max_retries = 4
 night_start = "02:00"    # night window for the standby baseline (local system time)
 night_end = "05:00"
 rolling_days = 28        # window of the rolling median used for anomaly detection
-z_threshold = 3.5        # robust z-score above which a day is flagged
+z_threshold = 3.5        # robust z-score above which a day is flagged ...
+min_rel_deviation = 0.2  # ... if it also differs >= 20 % from the rolling median
 spike_factor = 3.0       # night sample > spike_factor x baseline ...
 spike_min_w = 500        # ... and at least this many watts above it = night spike
 min_history_days = 7     # days of history needed before a day can be flagged
@@ -57,6 +58,7 @@ _TOML_KEYS: dict[tuple[str, str], str] = {
     ("analysis", "night_end"): "night_end",
     ("analysis", "rolling_days"): "rolling_days",
     ("analysis", "z_threshold"): "z_threshold",
+    ("analysis", "min_rel_deviation"): "min_rel_deviation",
     ("analysis", "spike_factor"): "spike_factor",
     ("analysis", "spike_min_w"): "spike_min_w",
     ("analysis", "min_history_days"): "min_history_days",
@@ -92,6 +94,7 @@ class Settings:
     night_end: str = "05:00"
     rolling_days: int = 28
     z_threshold: float = 3.5
+    min_rel_deviation: float = 0.2
     spike_factor: float = 3.0
     spike_min_w: float = 500.0
     min_history_days: int = 7
