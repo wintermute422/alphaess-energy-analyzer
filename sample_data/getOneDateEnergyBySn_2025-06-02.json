@@ -1,0 +1,16 @@
+{
+ "code": 200,
+ "msg": "Success",
+ "expMsg": null,
+ "data": {
+  "sysSn": "DEMO000000000001",
+  "theDate": "2025-06-02",
+  "epv": 26.882,
+  "eInput": 0.0,
+  "eOutput": 16.839,
+  "eCharge": 4.882,
+  "eDischarge": 5.503,
+  "eGridCharge": 0.0,
+  "eChargingPile": 0.0
+ }
+}

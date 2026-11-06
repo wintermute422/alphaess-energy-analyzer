@@ -1,0 +1,13 @@
+# systemd USER service template. Replace @APP_DIR@ with your install folder (deploy.sh does
+# this automatically), copy to ~/.config/systemd/user/ and run:
+#   systemctl --user daemon-reload && systemctl --user enable --now energy-analyzer.timer
+[Unit]
+Description=AlphaESS Energy Analyzer - fetch yesterday/today and regenerate the report
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=@APP_DIR@/shared
+ExecStart=@APP_DIR@/current/.venv/bin/energy-analyzer --config @APP_DIR@/shared/config.toml daily --report @APP_DIR@/shared/report.html
+Nice=10

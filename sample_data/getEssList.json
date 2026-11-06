@@ -1,0 +1,17 @@
+{
+ "code": 200,
+ "msg": "Success",
+ "expMsg": null,
+ "data": [
+  {
+   "sysSn": "DEMO000000000001",
+   "popv": 9.6,
+   "minv": "DEMO-INV-10K",
+   "poinv": 10.0,
+   "cobat": 10.0,
+   "mbat": "DEMO-BAT",
+   "usCapacity": 95.0,
+   "emsStatus": "Normal"
+  }
+ ]
+}

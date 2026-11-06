@@ -1,0 +1,15 @@
+# Usage (data and credentials live in ./data, which is git-ignored):
+#   mkdir -p data && docker compose run --rm energy-analyzer init
+#   cp data/.env.example data/.env   # fill in, then: chmod 600 data/.env
+#   docker compose run --rm energy-analyzer backfill --from 2025-01-01 --to 2025-01-31
+#   docker compose run --rm energy-analyzer daily --report report.html
+# Schedule the last line with cron or a systemd timer (see docs/scheduling.md).
+services:
+  energy-analyzer:
+    build: .
+    image: alphaess-energy-analyzer:local
+    # Run as your own user so files in ./data stay yours (export UID GID if they differ from 1000).
+    user: "${UID:-1000}:${GID:-1000}"
+    volumes:
+      - ./data:/data
+    command: ["daily", "--report", "report.html"]

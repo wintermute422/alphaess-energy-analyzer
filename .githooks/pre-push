@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# Enforces the push policy:
+#   - no force pushes / non-fast-forward updates, no branch deletions
+#   - branches: feature branches (feat/ fix/ docs/ chore/ ci/) only; main only when it does
+#     not exist on the remote yet (bootstrap) - afterwards main changes via merged PRs
+#   - tags: v* only
+#   - secret scan + gitleaks over every pushed commit range
+set -euo pipefail
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+ZERO="0000000000000000000000000000000000000000"
+fail() { echo "pre-push: BLOCKED - $*" >&2; exit 1; }
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  [ -n "${local_ref:-}" ] || continue
+  [ "$local_sha" != "$ZERO" ] || fail "deleting $remote_ref is not allowed"
+
+  case "$remote_ref" in
+    refs/heads/feat/*|refs/heads/fix/*|refs/heads/docs/*|refs/heads/chore/*|refs/heads/ci/*) ;;
+    refs/heads/main)
+      [ "$remote_sha" = "$ZERO" ] || fail "direct pushes to main are not allowed; open a PR" ;;
+    refs/tags/v*)
+      [ "$remote_sha" = "$ZERO" ] || fail "moving an existing tag ($remote_ref) is not allowed" ;;
+    *) fail "pushing to $remote_ref is not allowed by the branch policy" ;;
+  esac
+
+  if [ "$remote_sha" != "$ZERO" ]; then
+    git cat-file -e "$remote_sha^{commit}" 2>/dev/null \
+      || fail "remote $remote_ref has commits you do not have; fetch first (no force pushes)"
+    git merge-base --is-ancestor "$remote_sha" "$local_sha" \
+      || fail "non-fast-forward update of $remote_ref (force push) is not allowed"
+    range="$remote_sha..$local_sha"
+  else
+    # New ref: scan everything reachable from it that is not on the remote yet.
+    base="$(git rev-list "$local_sha" --not --remotes | tail -n1 || true)"
+    if [ -n "$base" ] && git rev-parse -q --verify "$base^" >/dev/null; then
+      range="$base^..$local_sha"
+    else
+      range="$local_sha"
+    fi
+  fi
+
+  if [ "$range" = "$local_sha" ]; then
+    # Root commit included: scan the full history of this ref.
+    bash scripts/secret_scan.sh --history || fail "secret_scan found matches in history"
+    bash scripts/gitleaks.sh range "$local_sha" || fail "gitleaks found leaks"
+  else
+    bash scripts/secret_scan.sh --range "$range" || fail "secret_scan found matches in $range"
+    bash scripts/gitleaks.sh range "$range" || fail "gitleaks found leaks in $range"
+  fi
+done
+
+echo "pre-push: OK"

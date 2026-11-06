@@ -1,0 +1,13 @@
+{
+ "code": 200,
+ "msg": "Success",
+ "expMsg": null,
+ "data": {
+  "sysSn": "DEMO000000000001",
+  "ppv": 2310,
+  "pload": 640,
+  "soc": 72.5,
+  "pgrid": 0,
+  "pbat": -1670
+ }
+}

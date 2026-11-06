@@ -1,0 +1,26 @@
+title = "alphaess-energy-analyzer gitleaks config"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "alphaess-serial"
+description = "Looks like a real AlphaESS system serial number"
+regex = '''\bAL[A-Z]?[0-9]{10,14}\b'''
+keywords = ["al"]
+
+[[rules]]
+id = "private-ipv4"
+description = "Private network IPv4 address (deploy host must come from deploy.env)"
+regex = '''\b(?:10\.\d{1,3}|192\.168|172\.(?:1[6-9]|2\d|3[01]))\.\d{1,3}\.\d{1,3}\b'''
+keywords = ["10.", "192.168", "172."]
+
+[[rules]]
+id = "alphaess-app-secret"
+description = "AlphaESS developer key assigned in code or config"
+regex = '''(?i)(?:app_?secret|developer_?key)\s*[=:]\s*["']?[0-9a-f]{32}\b'''
+keywords = ["secret", "developer"]
+
+[allowlist]
+description = "Rule definitions themselves"
+paths = ['''^\.gitleaks\.toml$''', '''^scripts/secret_scan\.sh$''']
