@@ -1,7 +1,7 @@
 FROM python:3.12-slim
 
 LABEL org.opencontainers.image.title="alphaess-energy-analyzer" \
-      org.opencontainers.image.description="AlphaESS Open API -> SQLite -> analysis -> offline HTML report" \
+      org.opencontainers.image.description="Self-hosted dashboard and analyzer for AlphaESS solar and battery systems" \
       org.opencontainers.image.licenses="MIT"
 
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1 PIP_DISABLE_PIP_VERSION_CHECK=1
