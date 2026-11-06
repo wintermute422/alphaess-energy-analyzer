@@ -21,10 +21,25 @@ ignored="$(printf '%s\n' "$staged" | git check-ignore --no-index --stdin || true
 [ -z "$ignored" ] || fail "git-ignored files staged (was git add -f used?):
 $ignored"
 
-# 3. Exact secret values + generic author-data patterns in the staged diff.
+# 3. Lint + format of staged Python files (a commit must never bypass the gate).
+py_files="$(printf '%s\n' "$staged" | grep -E '\.py$' || true)"
+if [ -n "$py_files" ]; then
+  # shellcheck source=scripts/pyenv.sh
+  . scripts/pyenv.sh
+  if "$PY" -m ruff --version >/dev/null 2>&1; then
+    # shellcheck disable=SC2086
+    "$PY" -m ruff check $py_files || fail "ruff check failed"
+    # shellcheck disable=SC2086
+    "$PY" -m ruff format --check $py_files || fail "ruff format --check failed (run: ruff format)"
+  else
+    echo "pre-commit: ruff not installed - skipping lint (pip install -e '.[dev]')" >&2
+  fi
+fi
+
+# 4. Exact secret values + generic author-data patterns in the staged diff.
 bash scripts/secret_scan.sh --staged || fail "secret_scan found matches (see above)"
 
-# 4. gitleaks on the staged changes.
+# 5. gitleaks on the staged changes.
 bash scripts/gitleaks.sh staged >/dev/null 2>"${TMPDIR:-/tmp}/gitleaks-precommit.log" \
   || { cat "${TMPDIR:-/tmp}/gitleaks-precommit.log" >&2; fail "gitleaks found leaks or could not run"; }
 
