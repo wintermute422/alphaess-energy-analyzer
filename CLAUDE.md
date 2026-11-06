@@ -64,3 +64,5 @@ Read CLAUDE.md, plan.md, progress.md; run `git status` and `git log -3`; continu
 - Anomaly flags need |robust z| > z_threshold AND >= min_rel_deviation (20 %) from the rolling
   median. Found when the synthetic data produced z = 3.55 on +11 % days: fix the detector,
   never the test or the default threshold.
+- Program output (CLI, selftest, journals) shows paths relative to the working directory
+  (`cli._show`), never absolute: absolute temp/work paths leak the home directory.

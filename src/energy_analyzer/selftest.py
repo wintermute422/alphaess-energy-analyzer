@@ -39,7 +39,8 @@ def run_selftest(keep_dir: Path | None = None, out: Callable[[str], None] = prin
         db_path = work / "selftest.db"
         if db_path.exists():
             db_path.unlink()
-        out(f"selftest: {DAYS} synthetic days from {START}, workdir {work}")
+        where = f"kept in {keep_dir.name}/" if keep_dir else "temporary folder"
+        out(f"selftest: {DAYS} synthetic days from {START}, {where}")
 
         data = synthetic.generate(START, DAYS)
         clock = FakeClock()

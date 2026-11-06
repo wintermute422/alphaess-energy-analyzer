@@ -57,7 +57,9 @@ def test_init_without_credentials_explains_next_step(
 ) -> None:
     (workdir / ".env").unlink()
     assert cli.main(["init"]) == cli.EXIT_OK
-    assert "fill in your credentials" in capsys.readouterr().out
+    out = capsys.readouterr().out
+    assert "fill in your credentials" in out
+    assert str(workdir) not in out  # paths are shown relative, no home directories in logs
 
 
 def test_bad_credentials_exit_2(workdir: Path, capsys: pytest.CaptureFixture[str]) -> None:

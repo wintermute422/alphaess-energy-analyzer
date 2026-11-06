@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import logging
+import os
 import sys
 from collections.abc import Sequence
 from datetime import date, datetime, timedelta
@@ -96,6 +97,15 @@ def _client(settings: Settings, transport: Transport | None) -> AlphaESSClient:
     )
 
 
+def _show(path: Path) -> str:
+    """Path for messages: relative to the working directory when possible, so logs and
+    journals do not carry home directories."""
+    try:
+        return Path(os.path.relpath(path)).as_posix()
+    except ValueError:  # different drive on Windows
+        return path.name
+
+
 def _say(msg: str) -> None:
     print(msg, flush=True)
 
@@ -111,18 +121,18 @@ def cmd_init(args: argparse.Namespace, settings: Settings, transport: Transport 
     for name, content in (("config.toml", CONFIG_TEMPLATE), (".env.example", ENV_EXAMPLE)):
         path = target / name
         if path.exists():
-            _say(f"exists, left unchanged: {path}")
+            _say(f"exists, left unchanged: {_show(path)}")
         else:
             path.write_text(content, encoding="utf-8", newline="\n")
-            _say(f"created: {path}")
+            _say(f"created: {_show(path)}")
     with Storage(settings.db_path) as db:
-        _say(f"database ready: {settings.db_path} (schema v{db.schema_version()})")
+        _say(f"database ready: {_show(settings.db_path)} (schema v{db.schema_version()})")
     if args.no_check:
         return EXIT_OK
     if not (settings.app_id and settings.app_secret):
         _say(
-            f"next: copy {target / '.env.example'} to {target / '.env'}, fill in your "
-            "credentials and run `energy-analyzer init` again to check them."
+            f"next: copy {_show(target / '.env.example')} to {_show(target / '.env')}, fill in "
+            "your credentials and run `energy-analyzer init` again to check them."
         )
         return EXIT_OK
     client = _client(settings, transport)
@@ -187,7 +197,7 @@ def _write_report(
     )
     stamp = datetime.now().astimezone().strftime("%Y-%m-%d %H:%M %Z")
     path = write_report(result, out, title=settings.report_title, generated_at=stamp)
-    _say(f"report: {path} ({len(result.days)} day(s), {len(result.anomalies)} anomaly/anomalies)")
+    _say(f"report: {_show(path)} ({len(result.days)} day(s), {len(result.anomalies)} anomalies)")
     return path
 
 
