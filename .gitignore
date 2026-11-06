@@ -1,0 +1,50 @@
+# Secrets and local config — never commit
+.env
+.env.*
+!.env.example
+deploy.env
+!deploy.env.example
+config.toml
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+
+# Data and generated output
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+report*.html
+!tests/**/report*.html
+data/
+logs/
+*.log
+
+# Harness working files (may reference the deploy target) — see CLAUDE.md
+/plan.md
+/checks.md
+/progress.md
+.claude/settings.local.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
