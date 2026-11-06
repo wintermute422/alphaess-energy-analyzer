@@ -55,3 +55,7 @@ Read CLAUDE.md, plan.md, progress.md; run `git status` and `git log -3`; continu
   --exclude-standard`), otherwise nothing is scanned before the first commit.
 - Short remote user names are matched only as `/home/<u>`, `Users\<u>` and `<u>@`, never bare.
 - setuptools >= 77: use SPDX `license = "MIT"` + `license-files`, no License classifier.
+- Iterate successive pairs with `itertools.pairwise` (ruff RUF007), not `zip(x, x[1:])`.
+- mypy targets 3.10, so the `tomli` fallback branch is type-checked: keep `tomli` in the dev extras.
+- Rate-limit tests must timestamp inside the transport, not around the client call
+  (the client sleeps before sending).
