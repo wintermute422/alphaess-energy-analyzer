@@ -5,10 +5,10 @@
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-**Understand your AlphaESS solar and battery system.** The tool pulls your data from the
-AlphaESS Open API into a local SQLite file, and shows it in a web dashboard and an offline HTML
-report. It finds your standby consumption, your self-sufficiency, and the days and nights that
-don't look like the rest.
+**A self-hosted dashboard and analyzer for AlphaESS solar and battery systems.** The tool pulls
+your data from the AlphaESS Open API into a local SQLite file and shows it in a web dashboard,
+with a printable HTML report as an extra. It finds your standby consumption, your
+self-sufficiency, and the days and nights that don't look like the rest.
 
 ![Dashboard overview (synthetic demo data)](docs/img/dashboard.png)
 

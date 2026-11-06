@@ -50,7 +50,7 @@ def _date(text: str) -> date:
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="energy-analyzer",
-        description="AlphaESS Open API -> SQLite -> analysis -> offline HTML report.",
+        description="Self-hosted dashboard and analyzer for AlphaESS solar and battery systems: AlphaESS Open API -> SQLite -> analysis -> web dashboard and HTML report.",
     )
     p.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     p.add_argument("--config", type=Path, help="config.toml (default: ./config.toml if present)")

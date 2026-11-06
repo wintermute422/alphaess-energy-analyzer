@@ -1,6 +1,7 @@
 # CLAUDE.md — alphaess-energy-analyzer
 
-Open-source tool: AlphaESS Open API -> SQLite -> analysis -> offline HTML report, plus
+Open-source, self-hosted dashboard and analyzer for AlphaESS solar and battery systems:
+AlphaESS Open API -> SQLite -> analysis -> web dashboard (+ single-file HTML report), plus
 deploy scripts for a Linux host (systemd user timer). Python 3.10+, stdlib-only at runtime.
 
 ## Golden rule: nothing author-specific
