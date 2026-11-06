@@ -9,6 +9,8 @@ it and writes a single offline HTML report:
 - **Anomalies** – days whose standby load or total consumption is far from the rolling median
   (robust z-score), and unusual night-time load spikes
 - **Monthly summary table**
+- **Web dashboard** – overview with live values, day detail, load heatmap, analysis and an
+  events page where you tell the analyzer about holidays, heating seasons, guests or outages
 
 ![Sample report generated from synthetic data](docs/img/sample-report.png)
 
@@ -55,6 +57,32 @@ Backfills are slow on purpose: one day needs two API calls and the tool waits at
 between calls, so a month takes about 10 minutes and a year about 2 hours. Interrupting is safe;
 already fetched days are kept, and running the same range again does not create duplicates.
 
+## Web dashboard
+
+```bash
+energy-analyzer serve --demo          # try it with synthetic data: http://localhost:8088/
+energy-analyzer serve                 # your data, only on this machine (127.0.0.1)
+```
+
+To open it from other devices in your home network, set a login password in `.env`
+(`WEB_PASSWORD=...`, optional `WEB_USER`, default `energy`) and listen on all addresses:
+`energy-analyzer serve --host 0.0.0.0`. The server refuses to listen beyond 127.0.0.1
+without a password. Run `energy-analyzer refresh` every 15 minutes (see
+[docs/scheduling.md](docs/scheduling.md)) to keep today's curves current; `deploy.sh` sets all
+of this up as systemd user services. The API is documented in [docs/web-api.md](docs/web-api.md).
+
+**Events.** On the *Events* page you record what makes days unusual:
+
+| Event | Effect on the analysis |
+|---|---|
+| Holiday / away | lower use is expected; a day that is *not* lower is flagged |
+| Guests, home office, EV charging | higher use is expected and not reported as a problem |
+| Heating / cooling season, new appliance | days are compared only with days after the change |
+| Outage / maintenance | days are not judged and not used as a reference |
+| Note | shown on the charts only |
+
+Events can lie in the future – enter the holiday before you leave.
+
 ## Commands
 
 | Command | What it does |
@@ -64,6 +92,8 @@ already fetched days are kept, and running the same range again does not create 
 | `energy-analyzer daily [--report report.html]` | fetch yesterday and today (idempotent), optionally regenerate the report |
 | `energy-analyzer report --out report.html [--from ...] [--to ...]` | analyze the database and write the report |
 | `energy-analyzer live` | print the latest live power values |
+| `energy-analyzer refresh` | fetch today only (2 API calls) |
+| `energy-analyzer serve [--host H] [--port P] [--demo]` | run the web dashboard |
 | `energy-analyzer selftest [--keep DIR]` | run the whole pipeline on built-in synthetic data (no network, no credentials) |
 
 Global options: `--config PATH`, `--env-file PATH`, `--db PATH`, `--sn SERIAL`, `-v`.
@@ -90,6 +120,8 @@ variables → command line flags. Relative paths in `config.toml` are relative t
 | Night spike: factor over baseline / minimum watts | `[analysis] spike_factor`, `spike_min_w` | – | `3.0`, `500` |
 | History needed before flagging (days) | `[analysis] min_history_days` | – | `7` |
 | Report title | `[report] title` | – | `Energy report` |
+| Dashboard address / port | `[web] host`, `port` | `WEB_HOST`, `WEB_PORT` | `127.0.0.1`, `8088` |
+| Dashboard login | `[web] user` | `WEB_USER`, `WEB_PASSWORD` | `energy`, none |
 
 `energy-analyzer init` writes a commented `config.toml` with all of these.
 
@@ -101,6 +133,9 @@ intraday battery curve as an approximation and the daily totals as authoritative
 Self-consumption = (PV − feed-in) / PV; autarky = 1 − grid import / consumption.
 A day is an anomaly when its robust z-score (median/MAD of the previous `rolling_days` days)
 exceeds `z_threshold` **and** it differs by at least `min_rel_deviation` from that median.
+A night spike must exceed `spike_factor` × baseline by `spike_min_w` **and**, once a week of
+history exists, be unusual compared with previous nights' peaks – so a heat pump that starts
+every night is learned as normal, while an unusually large night load is still reported.
 
 ## Scheduling
 

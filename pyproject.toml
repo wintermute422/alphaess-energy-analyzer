@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "alphaess-energy-analyzer"
-version = "0.1.0"
+version = "0.2.0"
 description = "Pull AlphaESS Open API data into SQLite, analyze standby load, self-sufficiency and anomalies, and write an offline HTML report."
 readme = "README.md"
 license = "MIT"

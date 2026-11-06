@@ -9,7 +9,7 @@ from energy_analyzer import synthetic
 
 
 def test_version() -> None:
-    assert energy_analyzer.__version__ == "0.1.0"
+    assert energy_analyzer.__version__ == "0.2.0"
 
 
 def test_sample_data_is_reproducible(sample_dir: Path, tmp_path: Path) -> None:

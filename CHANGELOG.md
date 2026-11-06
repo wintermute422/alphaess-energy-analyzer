@@ -3,6 +3,26 @@
 All notable changes are documented here. Format: [Keep a Changelog](https://keepachangelog.com/),
 versioning: [SemVer](https://semver.org/).
 
+## [0.2.0] - 2026-11-06
+
+### Added
+- Web dashboard (`energy-analyzer serve`): overview with KPIs and live values, day detail with
+  5-minute curves, load heatmap, analysis (baseline, anomalies, months) and an events page.
+  Stdlib HTTP server, no external resources; login required when reachable from the network.
+- `energy-analyzer serve --demo`: the dashboard on 120 days of synthetic data, no account needed.
+- Events: tell the analyzer about holidays, guests, home office, EV charging, heating/cooling
+  seasons, new appliances, outages and notes. They explain anomalies, keep unusual periods out
+  of the rolling references, and start new comparison periods.
+- `energy-analyzer refresh`: fetch today only (2 API calls) for a 15-minute refresh timer.
+- deploy.sh installs the dashboard and the refresh timer (`DEPLOY_WEB_HOST`, `DEPLOY_WEB_PORT`,
+  `DEPLOY_REFRESH_ONCALENDAR`) and generates the dashboard password on the target.
+
+### Changed
+- Night spikes are judged against previous nights' peaks as well, so a heat pump that starts
+  every night is no longer flagged once a week of history exists.
+- The report marks anomalies explained by events and counts only unexpected ones.
+- SQLite runs in WAL mode (schema v2 adds the events table; migrated automatically).
+
 ## [0.1.0] - 2026-11-06
 
 ### Added
