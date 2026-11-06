@@ -59,6 +59,8 @@ already fetched days are kept, and running the same range again does not create 
 
 ## Web dashboard
 
+![Dashboard overview with synthetic demo data](docs/img/dashboard.png)
+
 ```bash
 energy-analyzer serve --demo          # try it with synthetic data: http://localhost:8088/
 energy-analyzer serve                 # your data, only on this machine (127.0.0.1)
