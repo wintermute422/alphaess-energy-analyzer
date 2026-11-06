@@ -96,7 +96,9 @@ variables → command line flags. Relative paths in `config.toml` are relative t
 **How the numbers are computed.** Daily energy comes from `getOneDateEnergyBySn`; consumption is
 derived by energy balance (PV + grid import + battery discharge − feed-in − battery charge). The
 5-minute power series (`getOneDayPowerBySn`) has no battery power, so it is derived from the
-balance as well. Self-consumption = (PV − feed-in) / PV; autarky = 1 − grid import / consumption.
+balance as well, so it also absorbs inverter and battery conversion losses: treat the
+intraday battery curve as an approximation and the daily totals as authoritative.
+Self-consumption = (PV − feed-in) / PV; autarky = 1 − grid import / consumption.
 A day is an anomaly when its robust z-score (median/MAD of the previous `rolling_days` days)
 exceeds `z_threshold` **and** it differs by at least `min_rel_deviation` from that median.
 
