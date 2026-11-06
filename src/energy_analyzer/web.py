@@ -167,6 +167,7 @@ class App:
                 "min_rel_deviation": str(self.settings.min_rel_deviation),
                 "spike_factor": str(self.settings.spike_factor),
                 "spike_min_w": str(self.settings.spike_min_w),
+                "spike_routine_share": str(self.settings.spike_routine_share),
                 "min_history_days": str(self.settings.min_history_days),
             },
             "event_kinds": [asdict(k) for k in EVENT_KINDS],

@@ -38,7 +38,8 @@ rolling_days = 28        # window of the rolling median used for anomaly detecti
 z_threshold = 3.5        # robust z-score above which a day is flagged ...
 min_rel_deviation = 0.2  # ... if it also differs >= 20 % from the rolling median
 spike_factor = 3.0       # night sample > spike_factor x baseline ...
-spike_min_w = 500        # ... and at least this many watts above it = night spike
+spike_min_w = 500        # ... and at least this many watts above it = night spike,
+spike_routine_share = 0.25  # unless >= 25 % of recent nights had a similar peak (heat pump)
 min_history_days = 7     # days of history needed before a day can be flagged
 
 [report]
@@ -68,6 +69,7 @@ _TOML_KEYS: dict[tuple[str, str], str] = {
     ("analysis", "min_rel_deviation"): "min_rel_deviation",
     ("analysis", "spike_factor"): "spike_factor",
     ("analysis", "spike_min_w"): "spike_min_w",
+    ("analysis", "spike_routine_share"): "spike_routine_share",
     ("analysis", "min_history_days"): "min_history_days",
     ("report", "title"): "report_title",
     ("web", "host"): "web_host",
@@ -111,6 +113,7 @@ class Settings:
     min_rel_deviation: float = 0.2
     spike_factor: float = 3.0
     spike_min_w: float = 500.0
+    spike_routine_share: float = 0.25
     min_history_days: int = 7
     report_title: str = "Energy report"
     web_host: str = "127.0.0.1"

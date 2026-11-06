@@ -86,3 +86,6 @@ Read CLAUDE.md, plan.md, progress.md; run `git status` and `git log -3`; continu
 - Remote scratch files go under the install path only (a check once used /tmp on the target).
 - Range analyses must load `rolling_days` of history before the range (`analyze()` does), or
   the first days of every range lose their reference.
+- Validate detectors on real data before calling them done: the median-based night-spike rule
+  passed synthetic "every night" tests but failed on a heat pump that runs on most nights.
+  Night spikes now use a frequency rule (spike_routine_share).

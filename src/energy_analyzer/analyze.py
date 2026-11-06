@@ -187,10 +187,12 @@ def _night_spike(
     s: Settings,
     index: EventIndex,
 ) -> Anomaly | None:
-    """A night load far above the standby baseline that is ALSO unusual compared with the
-    night peaks of the reference days. A heat pump or storage heater that starts every night
-    is part of the household's normal pattern and is not flagged once enough history exists;
-    without history the baseline rule alone decides."""
+    """A night load far above the standby baseline that is ALSO rare in recent nights.
+
+    A heat pump or storage heater that starts on many nights is part of the household's
+    pattern: if at least `spike_routine_share` of the reference nights reached a similar peak
+    (within spike_min_w), the spike is routine and not flagged. Without enough history the
+    baseline rule alone decides."""
     if baseline <= 0 or index.ignored(day):
         return None
     hits = [
@@ -207,13 +209,10 @@ def _night_spike(
     ref = _reference(day, peaks, s, index)
     msg = f"Night load {load:.0f} W at {top.ts[11:16]} vs standby {baseline:.0f} W"
     if len(ref) >= max(1, s.min_history_days):
-        typical = float(statistics.median(ref))
-        if load - typical < s.spike_min_w:
+        similar = sum(peak >= load - s.spike_min_w for peak in ref)
+        if similar >= s.spike_routine_share * len(ref):
             return None
-        res = _robust_z(load, ref)
-        if res is not None and res[0] <= s.z_threshold:
-            return None
-        msg += f" (typical night peak {typical:.0f} W)"
+        msg += f" (similar peaks in {similar} of the last {len(ref)} nights)"
     why = index.expected(day, 1)
     return Anomaly(
         day, "night_spike", load, baseline, load / baseline, msg, why.title if why else None
@@ -277,6 +276,7 @@ def _settings_dict(s: Settings) -> dict[str, str]:
         "min_rel_deviation": str(s.min_rel_deviation),
         "spike_factor": str(s.spike_factor),
         "spike_min_w": str(s.spike_min_w),
+        "spike_routine_share": str(s.spike_routine_share),
         "min_history_days": str(s.min_history_days),
     }
 

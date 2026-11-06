@@ -18,8 +18,9 @@ versioning: [SemVer](https://semver.org/).
   `DEPLOY_REFRESH_ONCALENDAR`) and generates the dashboard password on the target.
 
 ### Changed
-- Night spikes are judged against previous nights' peaks as well, so a heat pump that starts
-  every night is no longer flagged once a week of history exists.
+- Night spikes are only reported when they are rare: if at least `spike_routine_share` (25 %)
+  of the recent nights had a similar peak, the spike is routine. A heat pump that starts on
+  many nights is no longer flagged once a week of history exists.
 - The report marks anomalies explained by events and counts only unexpected ones.
 - SQLite runs in WAL mode (schema v2 adds the events table; migrated automatically).
 

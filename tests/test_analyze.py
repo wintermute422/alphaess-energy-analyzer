@@ -170,13 +170,13 @@ def test_night_window_changes_baseline(
     assert shifted.settings["night_start"] == "21:00"
 
 
-def test_huge_z_threshold_suppresses_all_history_based_flags(
+def test_huge_z_threshold_suppresses_rolling_flags(
     synthetic_input: tuple[list[PowerSample], list[DailyEnergy]],
 ) -> None:
-    """Since v0.2.0 night spikes are also judged against previous nights' peaks."""
+    """Night spikes do not use the z-score (they use spike_routine_share)."""
     samples, daily = synthetic_input
     result = analyze_data(SN, samples, daily, replace(Settings(), z_threshold=1e9))
-    assert result.anomalies == []
+    assert {a.kind for a in result.anomalies} == {"night_spike"}
 
 
 def test_insufficient_history_no_flags() -> None:

@@ -120,6 +120,7 @@ variables → command line flags. Relative paths in `config.toml` are relative t
 | Robust z-score threshold | `[analysis] z_threshold` | – | `3.5` |
 | Minimum relative deviation to flag | `[analysis] min_rel_deviation` | – | `0.2` (20 %) |
 | Night spike: factor over baseline / minimum watts | `[analysis] spike_factor`, `spike_min_w` | – | `3.0`, `500` |
+| Night spike is routine if this share of recent nights had one | `[analysis] spike_routine_share` | – | `0.25` |
 | History needed before flagging (days) | `[analysis] min_history_days` | – | `7` |
 | Report title | `[report] title` | – | `Energy report` |
 | Dashboard address / port | `[web] host`, `port` | `WEB_HOST`, `WEB_PORT` | `127.0.0.1`, `8088` |
@@ -136,8 +137,9 @@ Self-consumption = (PV − feed-in) / PV; autarky = 1 − grid import / consumpt
 A day is an anomaly when its robust z-score (median/MAD of the previous `rolling_days` days)
 exceeds `z_threshold` **and** it differs by at least `min_rel_deviation` from that median.
 A night spike must exceed `spike_factor` × baseline by `spike_min_w` **and**, once a week of
-history exists, be unusual compared with previous nights' peaks – so a heat pump that starts
-every night is learned as normal, while an unusually large night load is still reported.
+history exists, be rare: if at least `spike_routine_share` (25 %) of the recent nights reached a
+similar peak, it is routine – so a heat pump that starts on many nights is learned as normal,
+while a rare or unusually large night load is still reported.
 
 ## Scheduling
 

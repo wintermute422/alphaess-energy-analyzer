@@ -58,11 +58,13 @@ def flags(anomalies: list[Anomaly], kind: str, expected: bool | None = None) -> 
     }
 
 
-def heat_pump(big_night: int | None = None) -> Any:
+def heat_pump(big_night: int | None = None, share: float = 1.0) -> Any:
     rng = random.Random(7)
 
     def hook(offset: int, rows: list[dict[str, Any]]) -> None:
-        start = rng.randrange(36, 54)  # 03:00 .. 04:30 in 5-minute slots
+        if offset != big_night and rng.random() >= share:
+            return  # the heat pump does not start this night
+        start = rng.randrange(24, 60)  # 02:00 .. 05:00 in 5-minute slots
         power = 8000 if offset == big_night else 4000
         for slot in range(start, start + 6):
             rows[slot]["load"] += power
@@ -87,7 +89,27 @@ def test_unusually_big_night_peak_is_still_flagged() -> None:
     late = {d for d in flags(result.anomalies, "night_spike") if d >= day(7)}
     assert late == {day(30)}
     msg = next(a.message for a in result.anomalies if a.day == day(30))
-    assert "typical night peak" in msg
+    assert "similar peaks in 0 of the last" in msg
+
+
+@pytest.mark.parametrize("share", [0.5, 0.35])
+def test_heat_pump_on_some_nights_is_routine(share: float) -> None:
+    """Real-world case: the heat pump starts on many, but not all nights."""
+    samples, daily = build(hook=heat_pump(share=share))
+    result = analyze_data(synthetic.DEMO_SN, samples, daily, Settings())
+    late = {d for d in flags(result.anomalies, "night_spike") if d >= day(14)}
+    assert late == set()
+
+
+def test_rare_night_load_is_flagged() -> None:
+    def hook(offset: int, rows: list[dict[str, Any]]) -> None:
+        if offset in (12, 30):  # twice in 50 nights
+            for slot in range(40, 46):
+                rows[slot]["load"] += 3000
+
+    samples, daily = build(hook=hook)
+    result = analyze_data(synthetic.DEMO_SN, samples, daily, Settings())
+    assert flags(result.anomalies, "night_spike") == {day(12), day(30)}
 
 
 def test_spike_without_recurring_pattern_still_detected() -> None:
