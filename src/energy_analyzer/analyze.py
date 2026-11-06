@@ -4,7 +4,9 @@ Pure functions over the plain data types in models.py; `analyze()` is the thin s
 
 - Standby baseline: median load of the night-window samples with PV == 0.
 - Anomalies: robust z-score (median / MAD) of the daily baseline and the daily consumption
-  against the previous `rolling_days` calendar days, plus short night spikes above the baseline.
+  against the previous `rolling_days` calendar days, plus night spikes that are high against
+  the baseline AND unusual against previous nights' peaks.
+- Events (events.py) exclude days from references, start new regimes and explain anomalies.
 """
 
 from __future__ import annotations
@@ -12,14 +14,17 @@ from __future__ import annotations
 import statistics
 from collections import defaultdict
 from collections.abc import Iterable
+from dataclasses import replace
 from datetime import date, timedelta
 
 from energy_analyzer.config import Settings
+from energy_analyzer.events import EventIndex
 from energy_analyzer.models import (
     AnalysisResult,
     Anomaly,
     DailyEnergy,
     DayStats,
+    Event,
     MonthStats,
     PowerSample,
 )
@@ -105,44 +110,88 @@ def _night_max(night: list[PowerSample]) -> float | None:
     return max(loads) if loads else None
 
 
+def _reference(
+    day: str, values: dict[str, float], settings: Settings, index: EventIndex
+) -> list[float]:
+    """Values of the previous rolling_days days that may serve as "normal" for day: not inside
+    a holiday/guests/outage period and not before the latest regime change (e.g. heating on)."""
+    today = date.fromisoformat(day)
+    since = index.regime_start(day)
+    ref = []
+    for i in range(1, settings.rolling_days + 1):
+        d = (today - timedelta(days=i)).isoformat()
+        if since is not None and d < since:
+            break
+        v = values.get(d)
+        if v is not None and not index.excluded_from_reference(d):
+            ref.append(v)
+    return ref
+
+
 def _rolling_anomalies(
-    stats: list[DayStats], kind: str, values: dict[str, float], settings: Settings
+    stats: list[DayStats],
+    kind: str,
+    values: dict[str, float],
+    settings: Settings,
+    index: EventIndex,
 ) -> list[Anomaly]:
     out: list[Anomaly] = []
     for ds in stats:
         x = values.get(ds.day)
-        if x is None:
+        if x is None or index.ignored(ds.day):
             continue
-        today = date.fromisoformat(ds.day)
-        ref = [
-            v
-            for i in range(1, settings.rolling_days + 1)
-            if (v := values.get((today - timedelta(days=i)).isoformat())) is not None
-        ]
+        ref = _reference(ds.day, values, settings, index)
         if len(ref) < max(1, settings.min_history_days):
             continue
+        med = float(statistics.median(ref))
         res = _robust_z(x, ref)
-        if res is None:
-            continue
-        z, med = res
-        if abs(z) <= settings.z_threshold:
-            continue
-        # Effect-size floor: with a very stable history the MAD is tiny and a statistically
-        # unusual day can still be practically normal (e.g. +10 % consumption).
-        if med and abs(x - med) / abs(med) < settings.min_rel_deviation:
-            continue
-        if kind == "baseline":
-            msg = f"Standby load {x:.0f} W vs typical {med:.0f} W"
-        else:
-            msg = f"Consumption {x:.1f} kWh vs typical {med:.1f} kWh"
-        out.append(Anomaly(ds.day, kind, x, med, z, msg))
+        unit, fmt = ("W", ".0f") if kind == "baseline" else ("kWh", ".1f")
+        label = "Standby load" if kind == "baseline" else "Consumption"
+        flagged = False
+        if res is not None:
+            z = res[0]
+            # Effect-size floor: with a very stable history the MAD is tiny and a statistically
+            # unusual day can still be practically normal (e.g. +10 % consumption).
+            big = not med or abs(x - med) / abs(med) >= settings.min_rel_deviation
+            if abs(z) > settings.z_threshold and big:
+                flagged = True
+                why = index.expected(ds.day, 1 if x > med else -1)
+                msg = f"{label} {x:{fmt}} {unit} vs typical {med:{fmt}} {unit}"
+                out.append(Anomaly(ds.day, kind, x, med, z, msg, why.title if why else None))
+        away = index.expected(ds.day, -1)
+        not_lower = med > 0 and x >= med * (1.0 - settings.min_rel_deviation)
+        if kind == "consumption" and away is not None and not flagged and not_lower:
+            z = res[0] if res is not None else 0.0
+            msg = (
+                f"Consumption {x:.1f} kWh during {away.title!r}: expected lower than the "
+                f"typical {med:.1f} kWh"
+            )
+            out.append(Anomaly(ds.day, "not_lower", x, med, z, msg))
     return out
 
 
+def _night_peaks(night: dict[str, list[PowerSample]]) -> dict[str, float]:
+    peaks: dict[str, float] = {}
+    for day, win in night.items():
+        loads = [p.load_w for p in win if p.load_w is not None]
+        if loads:
+            peaks[day] = float(max(loads))
+    return peaks
+
+
 def _night_spike(
-    day: str, night: list[PowerSample], baseline: float, s: Settings
+    day: str,
+    night: list[PowerSample],
+    baseline: float,
+    peaks: dict[str, float],
+    s: Settings,
+    index: EventIndex,
 ) -> Anomaly | None:
-    if baseline <= 0:
+    """A night load far above the standby baseline that is ALSO unusual compared with the
+    night peaks of the reference days. A heat pump or storage heater that starts every night
+    is part of the household's normal pattern and is not flagged once enough history exists;
+    without history the baseline rule alone decides."""
+    if baseline <= 0 or index.ignored(day):
         return None
     hits = [
         p
@@ -155,8 +204,20 @@ def _night_spike(
         return None
     top = max(hits, key=lambda p: (p.load_w or 0.0, p.ts))
     load = float(top.load_w or 0.0)
+    ref = _reference(day, peaks, s, index)
     msg = f"Night load {load:.0f} W at {top.ts[11:16]} vs standby {baseline:.0f} W"
-    return Anomaly(day, "night_spike", load, baseline, load / baseline, msg)
+    if len(ref) >= max(1, s.min_history_days):
+        typical = float(statistics.median(ref))
+        if load - typical < s.spike_min_w:
+            return None
+        res = _robust_z(load, ref)
+        if res is not None and res[0] <= s.z_threshold:
+            return None
+        msg += f" (typical night peak {typical:.0f} W)"
+    why = index.expected(day, 1)
+    return Anomaly(
+        day, "night_spike", load, baseline, load / baseline, msg, why.title if why else None
+    )
 
 
 def _months(stats: list[DayStats]) -> list[MonthStats]:
@@ -221,11 +282,17 @@ def _settings_dict(s: Settings) -> dict[str, str]:
 
 
 def analyze_data(
-    sys_sn: str, samples: list[PowerSample], daily: list[DailyEnergy], settings: Settings
+    sys_sn: str,
+    samples: list[PowerSample],
+    daily: list[DailyEnergy],
+    settings: Settings,
+    events: list[Event] | None = None,
 ) -> AnalysisResult:
     """Compute per-day stats, anomalies, monthly totals and the baseline trend."""
     start, end = _parse_hhmm(settings.night_start), _parse_hhmm(settings.night_end)
+    index = EventIndex(events)
     night = _night_samples(samples, start, end)
+    peaks = _night_peaks(night)
     energy = {d.day: d for d in daily}
     days = sorted({s.day for s in samples} | set(energy))
 
@@ -253,14 +320,14 @@ def analyze_data(
             )
         )
         if base is not None:
-            spike = _night_spike(day, win, base, settings)
+            spike = _night_spike(day, win, base, peaks, settings, index)
             if spike is not None:
                 anomalies.append(spike)
 
     baselines = {d.day: d.baseline_w for d in stats if d.baseline_w is not None}
     loads = {d.day: d.load_kwh for d in stats if d.load_kwh is not None}
-    anomalies += _rolling_anomalies(stats, "baseline", baselines, settings)
-    anomalies += _rolling_anomalies(stats, "consumption", loads, settings)
+    anomalies += _rolling_anomalies(stats, "baseline", baselines, settings, index)
+    anomalies += _rolling_anomalies(stats, "consumption", loads, settings, index)
     anomalies.sort(key=lambda a: (a.day, a.kind))
 
     return AnalysisResult(
@@ -272,6 +339,29 @@ def analyze_data(
         months=_months(stats),
         baseline_trend_w_per_30d=_trend_per_30d(stats),
         settings=_settings_dict(settings),
+        events=sorted(events or [], key=lambda e: (e.start_day, e.id or 0)),
+    )
+
+
+def _overlaps(e: Event, lo: str, hi: str) -> bool:
+    if e.effect == "regime_change":
+        return e.start_day <= hi
+    return e.start_day <= hi and (e.end_day or e.start_day) >= lo
+
+
+def trim(result: AnalysisResult, first_day: str | None, last_day: str | None) -> AnalysisResult:
+    """Restrict a result to a day range (months and trend are recomputed for the range)."""
+    lo, hi = first_day or "", last_day or "9999"
+    days = [d for d in result.days if lo <= d.day <= hi]
+    return replace(
+        result,
+        first_day=days[0].day if days else None,
+        last_day=days[-1].day if days else None,
+        days=days,
+        anomalies=[a for a in result.anomalies if lo <= a.day <= hi],
+        months=_months(days),
+        baseline_trend_w_per_30d=_trend_per_30d(days),
+        events=[e for e in result.events if _overlaps(e, lo, hi)],
     )
 
 
@@ -282,7 +372,15 @@ def analyze(
     first_day: str | None = None,
     last_day: str | None = None,
 ) -> AnalysisResult:
-    """Load the stored series of one system (optionally a day range) and analyse it."""
-    samples = storage.power_range(sys_sn, first_day, last_day)
-    daily = storage.daily_range(sys_sn, first_day, last_day)
-    return analyze_data(sys_sn, samples, daily, settings)
+    """Load the stored series of one system (optionally a day range) and analyse it.
+
+    Days before first_day are loaded as history, so the rolling references at the start of the
+    range are the same as in a full analysis; the result is then trimmed to the range."""
+    load_from = first_day
+    if first_day:
+        history = timedelta(days=settings.rolling_days)
+        load_from = (date.fromisoformat(first_day) - history).isoformat()
+    samples = storage.power_range(sys_sn, load_from, last_day)
+    daily = storage.daily_range(sys_sn, load_from, last_day)
+    result = analyze_data(sys_sn, samples, daily, settings, storage.events())
+    return trim(result, first_day, last_day) if first_day or last_day else result

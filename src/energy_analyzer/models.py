@@ -57,13 +57,35 @@ class DayStats:
 
 
 @dataclass(frozen=True)
+class Event:
+    """Something the user told us about: a holiday, a heating season change, an outage, ...
+
+    Range events cover start_day..end_day (end_day None = that single day). Events with the
+    "regime_change" effect mark a point in time instead: from start_day on, days are only
+    compared with days after the change.
+    """
+
+    id: int | None
+    kind: str
+    title: str
+    start_day: str
+    end_day: str | None
+    effect: str
+    note: str = ""
+
+    def covers(self, day: str) -> bool:
+        return self.start_day <= day <= (self.end_day or self.start_day)
+
+
+@dataclass(frozen=True)
 class Anomaly:
     day: str
-    kind: str  # "baseline" | "consumption" | "night_spike"
+    kind: str  # "baseline" | "consumption" | "night_spike" | "not_lower"
     value: float
     reference: float  # rolling median (or baseline for spikes)
     score: float  # robust z-score, or spike ratio
     message: str
+    expected_by: str | None = None  # title of the event that explains it, if any
 
 
 @dataclass(frozen=True)
@@ -89,3 +111,4 @@ class AnalysisResult:
     months: list[MonthStats] = field(default_factory=list)
     baseline_trend_w_per_30d: float | None = None  # least-squares slope of daily baseline
     settings: dict[str, str] = field(default_factory=dict)  # thresholds used, for the report
+    events: list[Event] = field(default_factory=list)  # events overlapping the period
