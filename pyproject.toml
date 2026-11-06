@@ -38,7 +38,7 @@ Issues = "https://github.com/wintermute422/alphaess-energy-analyzer/issues"
 where = ["src"]
 
 [tool.setuptools.package-data]
-energy_analyzer = ["py.typed"]
+energy_analyzer = ["py.typed", "web/*"]
 
 [tool.ruff]
 line-length = 100

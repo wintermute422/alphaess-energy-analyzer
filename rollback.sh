@@ -58,6 +58,8 @@ ln -sfn "releases/$TARGET" "$APP/current.new"
 mv -Tf "$APP/current.new" "$APP/current"
 echo "current -> $(readlink "$APP/current")"
 "$APP/current/.venv/bin/energy-analyzer" selftest | tail -n1
+# The dashboard runs from `current`: restart it if it is installed.
+systemctl --user try-restart energy-analyzer-web.service 2>/dev/null || true
 EOF
 
 "${SSH[@]}" "$USER_@$HOST" \

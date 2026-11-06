@@ -43,6 +43,13 @@ min_history_days = 7     # days of history needed before a day can be flagged
 
 [report]
 title = "Energy report"
+
+[web]
+# `energy-analyzer serve`: the dashboard. Listening on anything but 127.0.0.1 requires
+# WEB_PASSWORD in .env (login user below).
+host = "127.0.0.1"
+port = 8088
+user = "energy"
 """
 
 # config.toml key -> Settings field
@@ -63,6 +70,9 @@ _TOML_KEYS: dict[tuple[str, str], str] = {
     ("analysis", "spike_min_w"): "spike_min_w",
     ("analysis", "min_history_days"): "min_history_days",
     ("report", "title"): "report_title",
+    ("web", "host"): "web_host",
+    ("web", "port"): "web_port",
+    ("web", "user"): "web_user",
 }
 
 # environment / .env name -> Settings field
@@ -72,6 +82,10 @@ _ENV_KEYS: dict[str, str] = {
     "ALPHA_SYSTEM_SN": "sys_sn",
     "ENERGY_DB": "db_path",
     "ALPHA_BASE_URL": "base_url",
+    "WEB_USER": "web_user",
+    "WEB_PASSWORD": "web_password",
+    "WEB_HOST": "web_host",
+    "WEB_PORT": "web_port",
 }
 
 
@@ -99,6 +113,10 @@ class Settings:
     spike_min_w: float = 500.0
     min_history_days: int = 7
     report_title: str = "Energy report"
+    web_host: str = "127.0.0.1"
+    web_port: int = 8088
+    web_user: str = "energy"
+    web_password: str | None = field(default=None, repr=False)
     config_path: Path | None = None
     env_path: Path | None = None
 
@@ -143,7 +161,7 @@ def _coerce(name: str, value: Any) -> Any:
     except (TypeError, ValueError) as exc:
         raise ConfigError(f"invalid value for {name}: {value!r}") from exc
     text = str(value).strip()
-    return text or None if name in ("app_id", "app_secret", "sys_sn") else text
+    return text or None if name in ("app_id", "app_secret", "sys_sn", "web_password") else text
 
 
 def load_settings(

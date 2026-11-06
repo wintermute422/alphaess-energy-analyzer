@@ -1,0 +1,11 @@
+# systemd USER service template: fetch today only (2 API calls) so the dashboard stays fresh.
+[Unit]
+Description=AlphaESS Energy Analyzer - refresh today's data
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=@APP_DIR@/shared
+ExecStart=@APP_DIR@/current/.venv/bin/energy-analyzer --config @APP_DIR@/shared/config.toml refresh
+Nice=10
