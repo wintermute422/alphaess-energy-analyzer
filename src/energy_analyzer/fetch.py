@@ -84,9 +84,9 @@ class AlphaESSClient:
         timeout_s: float = 30.0,
         max_retries: int = 4,
         backoff_s: float = 5.0,
-        clock: Callable[[], float] = time.monotonic,
-        sleep: Callable[[float], None] = time.sleep,
-        wall_clock: Callable[[], float] = time.time,
+        clock: Callable[[], float] | None = None,
+        sleep: Callable[[float], None] | None = None,
+        wall_clock: Callable[[], float] | None = None,
     ) -> None:
         self._app_id = app_id
         self._app_secret = app_secret
@@ -96,9 +96,10 @@ class AlphaESSClient:
         self.timeout_s = timeout_s
         self.max_retries = max_retries
         self.backoff_s = backoff_s
-        self._clock = clock
-        self._sleep = sleep
-        self._wall = wall_clock
+        # Resolved at construction time (not as default args) so tests can patch `time`.
+        self._clock = clock or time.monotonic
+        self._sleep = sleep or time.sleep
+        self._wall = wall_clock or time.time
         self._last_call: float | None = None
         self.calls = 0
 

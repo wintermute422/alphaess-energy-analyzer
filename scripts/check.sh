@@ -20,11 +20,6 @@ stage "pytest"
 stage "secret scan (tracked files)"
 bash scripts/secret_scan.sh --tree
 stage "selftest"
-# TEMPORARY until plan step 6 adds the CLI: remove this guard in step 6.
-if [ -f src/energy_analyzer/cli.py ]; then
-  "$PY" -m energy_analyzer selftest
-else
-  echo "SKIP selftest: CLI not implemented yet (plan step 6)"
-fi
+"$PY" -m energy_analyzer selftest
 
 printf '\ncheck.sh: ALL STAGES PASSED\n'
