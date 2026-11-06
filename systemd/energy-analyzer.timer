@@ -1,0 +1,12 @@
+# systemd USER timer template. Replace @ONCALENDAR@ (e.g. *-*-* 03:30:00).
+# To run it while you are logged out: sudo loginctl enable-linger "$USER" (once).
+[Unit]
+Description=Nightly AlphaESS Energy Analyzer run
+
+[Timer]
+OnCalendar=@ONCALENDAR@
+RandomizedDelaySec=10min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -193,15 +193,17 @@ def _trend_per_30d(stats: list[DayStats]) -> float | None:
         for d in stats
         if d.baseline_w is not None
     ]
-    if len(points) < 2:
+    # Theil-Sen estimator (median of pairwise slopes): a single anomalous day must not tilt
+    # the trend the way it does with least squares.
+    slopes = [
+        (y2 - y1) / (x2 - x1)
+        for i, (x1, y1) in enumerate(points)
+        for x2, y2 in points[i + 1 :]
+        if x2 != x1
+    ]
+    if not slopes:
         return None
-    mx = statistics.fmean(x for x, _ in points)
-    my = statistics.fmean(y for _, y in points)
-    sxx = sum((x - mx) ** 2 for x, _ in points)
-    if sxx == 0:
-        return None
-    sxy = sum((x - mx) * (y - my) for x, y in points)
-    return sxy / sxx * 30.0
+    return statistics.median(slopes) * 30.0
 
 
 def _settings_dict(s: Settings) -> dict[str, str]:

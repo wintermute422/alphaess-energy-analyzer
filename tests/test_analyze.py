@@ -323,3 +323,16 @@ def test_min_rel_deviation_is_the_effect_size_floor() -> None:
     assert busy <= {a.day for a in strict.anomalies if a.kind == "consumption"}
     assert not busy & {a.day for a in default.anomalies}
     assert "2025-07-24" in {a.day for a in default.anomalies if a.kind == "consumption"}
+
+
+def test_baseline_trend_ignores_single_outlier() -> None:
+    from energy_analyzer.analyze import _trend_per_30d
+    from energy_analyzer.models import DayStats
+
+    days = [
+        DayStats(f"2025-06-{d:02d}", 150.0 + (400.0 if d == 25 else 0.0), None,
+                 None, None, None, None, None, None)
+        for d in range(1, 31)
+    ]  # fmt: skip
+    trend = _trend_per_30d(days)
+    assert trend is not None and abs(trend) < 1e-9
